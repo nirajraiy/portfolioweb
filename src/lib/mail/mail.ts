@@ -33,10 +33,11 @@ export async function sendMail({ to, subject, html }: MailOptions): Promise<{
         pass,
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as Error;
     return {
       success: false,
-      error: 'Failed to create mail transporter: ' + error.message,
+      error: 'Failed to create mail transporter: ' + err.message,
     };
   }
 
@@ -53,10 +54,11 @@ export async function sendMail({ to, subject, html }: MailOptions): Promise<{
       response: info.response,
       messageId: info.messageId,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
+   const err = error as Error;
     return {
       success: false,
-      error: 'Failed to send mail: ' + error.message,
+      error: 'Failed to send mail: ' + err.message,
     };
   }
 }

@@ -3,6 +3,7 @@
 import React from "react";
 import "./styles.css";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const projects = [
   {
@@ -55,11 +56,19 @@ const ProjectsPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
             >
-              <img
+              {/* <img
                 src={project.image}
                 alt={project.title}
                 className="project-image"
-              />
+              /> */}
+              <Image
+  src={project.image}
+  alt={project.title}
+  className="project-image"
+  // width={400} // or a size that matches your layout
+  // height={250} // adjust as needed
+  layout="responsive" // or use 'intrinsic', 'fill', etc. depending on layout
+/>
               <h2>{project.title}</h2>
               <p>{project.description}</p>
               <div className="tech-tags">

@@ -92,8 +92,10 @@ export default function Hero() {
           <Image
             src="/nirajImage.png"
             alt="Niraj"
-            width={400}
+            width={250}
             height={300}
+            // layout="fill"
+    objectFit="cover"
             priority
           />
         </div>

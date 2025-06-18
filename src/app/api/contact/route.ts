@@ -1,9 +1,6 @@
-// app/api/contact/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-// import { connectMongoDB } from '@/lib/db';
 import { sendMail } from '@/lib/mail/mail';
 import { buildAdminEmail, buildUserConfirmationEmail } from '@/lib/mail/mailTemplate';
-// import { Contact } from '@/models/Contact';
 import { connectMongoDB } from '@/lib/mail/mongodbConnectoon';
 import { Contact } from '../../../../models/Contact';
 
@@ -21,10 +18,8 @@ export async function POST(req: NextRequest) {
 
     const formData = { name, number, country, email, reason };
 
-    // ✅ Connect to MongoDB
     await connectMongoDB();
 
-    // ✅ Save data to MongoDB
     const savedData = await Contact.create(formData);
 
     // ✅ Send admin email
@@ -49,13 +44,15 @@ export async function POST(req: NextRequest) {
       userMail: userResult.response,
       savedId: savedData._id,
     });
-  } catch (error: any) {
-    console.error('Server error:', error.message || error);
-    return NextResponse.json(
-      { error: 'Internal Server Error', details: error.message },
-      { status: 500 }
-    );
-  }
+  } 
+  catch (error: unknown) {
+  const err = error as Error;
+  console.error('Server error:', err.message || error);
+  return NextResponse.json(
+    { error: 'Internal Server Error', details: err.message },
+    { status: 500 }
+  );
+}
 }
 
 
