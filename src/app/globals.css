@@ -1,4 +1,78 @@
+/* Box-sizing reset */
 *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Global body styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #f4f4f4;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* Remove default margin for common elements */
+/* h1, h2, h3, h4, h5, h6,
+p, ul, ol, li, figure, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+} */
+
+/* Anchor tag defaults */
+/* a {
+  color: inherit;
+  text-decoration: none;
+} */
+
+/* Button reset */
+/* button {
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+} */
+
+/* List reset */
+/* ul, ol {
+  list-style: none;
+} */
+
+/* Image defaults */
+/* img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+} */
+
+/* Form elements inherit font */
+/* input, textarea, select {
+  font: inherit;
+} */
+
+/* Section spacing (can be reused) */
+/* section {
+  padding: 2rem 1rem;
+} */
+
+/* Hero section styling */
+.hero {
+  padding: 4rem;
+  text-align: center;
+  background: #fff;
+}
+
+
+
+
+/* *,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -18,4 +92,4 @@ body {
   background: #fff;
 }
 
-
+ */
