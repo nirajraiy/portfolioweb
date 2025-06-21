@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import "./styles.css";
+import Buttons from "@/components/constants/Buttons";
+import CommonLoader from "@/components/constants/CommonLoader";
 
 const countryRegex: { [key: string]: RegExp } = {
   India: /^[6-9]\d{9}$/,
@@ -41,6 +43,8 @@ const Contact = () => {
     email: "",
     reason: "",
   });
+
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -132,6 +136,8 @@ const Contact = () => {
   if (!allValid) return;
 
   try {
+      setLoading(true)
+
     const response = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -160,6 +166,8 @@ const Contact = () => {
   } catch (error) {
     console.error("Submission error:", error);
     alert("❌ Network/server error.");
+  } finally {
+      setLoading(false)
   }
 };
 
@@ -240,9 +248,16 @@ const Contact = () => {
               <p className="error">{errors.reason}</p>
             )}
           </div>
+          <Buttons
+            buttonName="Submit"
+            type="submit"
+          />
 
-          <button type="submit">Submit</button>
+          {/* <button type="submit">Submit</button> */}
         </form>
+       {loading &&
+        <CommonLoader/>
+       }
     </section>
   );
 };

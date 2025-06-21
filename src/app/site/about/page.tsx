@@ -1,5 +1,5 @@
-
 "use client";
+import Buttons from "@/components/constants/Buttons";
 import styles from "./AboutSection.module.css";
 import Image from "next/image";
 
@@ -31,8 +31,8 @@ export default function AboutPage() {
 
           <ul className={styles.skills}>
             <li>
-              ✅ Expert in <strong> React Native </strong> for cross-platform app
-              development
+              ✅ Expert in <strong> React Native </strong> for cross-platform
+              app development
             </li>
             <li>
               ✅ Native Android development using <strong>Kotlin</strong> &{" "}
@@ -50,14 +50,23 @@ export default function AboutPage() {
             experience.
           </p>
 
-          <a
+          {/* <a
             href="/cv/NirajResume.html"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.downloadCV}
           >
             📄 Download CV as PDF
-          </a>
+          </a> */}
+          <Buttons
+            buttonName="📄 Download CV as PDF"
+            onClick={() => {
+              const win = window.open("/cv/NirajResume.html", "_blank");
+              setTimeout(() => {
+                win?.print();
+              }, 200);
+            }}
+          />
         </div>
       </div>
     </section>
