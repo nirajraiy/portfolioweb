@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
     // await connectMongoDB();
 
-    const savedData = await Contact.create(formData);
+    // const savedData = await Contact.create(formData);
 
     // ✅ Send admin email
     const adminHtml = buildAdminEmail(formData);
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
       message: "Form submitted successfully!",
       adminMail: adminResult.response,
       userMail: userResult.response,
-      savedId: savedData._id,
+      // savedId: savedData._id,
     });
   } catch (error: unknown) {
     if (error instanceof Error) {
