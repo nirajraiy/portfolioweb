@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 
     const formData = { name, number, country, email, reason };
 
-    await connectMongoDB();
+    // await connectMongoDB();
 
     const savedData = await Contact.create(formData);
 
