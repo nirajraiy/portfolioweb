@@ -1,11 +1,75 @@
+// import { NextRequest, NextResponse } from "next/server";
+// import { sendMail } from "@/lib/mail/mail";
+// import {
+//   buildAdminEmail,
+//   buildUserConfirmationEmail,
+// } from "@/lib/mail/mailTemplate";
+// import { connectMongoDB } from "@/lib/mail/mongodbConnectoon";
+// import { Contact } from "../../../../models/Contact";
+
+// export async function POST(req: NextRequest) {
+//   try {
+//     const body = await req.json();
+//     const { name, number, country = "India", email, reason } = body;
+
+//     if (!name || !email || !number) {
+//       return NextResponse.json(
+//         { error: "Missing required fields: name, email, or number" },
+//         { status: 400 }
+//       );
+//     }
+
+//     const formData = { name, number, country, email, reason };
+
+//     await connectMongoDB();
+
+//     const savedData = await Contact.create(formData);
+
+//     // ✅ Send admin email
+//     const adminHtml = buildAdminEmail(formData);
+//     const adminResult = await sendMail({
+//       to: "nirajraibxr657@gmail.com",
+//       subject: "📩 New Contact Form Submission",
+//       html: adminHtml,
+//     });
+
+//     // ✅ Send confirmation email to user
+//     const userHtml = buildUserConfirmationEmail(formData);
+//     const userResult = await sendMail({
+//       to: email,
+//       subject: "✅ We received your message",
+//       html: userHtml,
+//     });
+
+//     return NextResponse.json({
+//       message: "Form submitted successfully!",
+//       adminMail: adminResult.response,
+//       userMail: userResult.response,
+//       savedId: savedData._id,
+//     });
+//   } catch (error: unknown) {
+//     if (error instanceof Error) {
+//       console.error("Server error:", error.message);
+//       return NextResponse.json(
+//         { error: "Internal Server Error", details: error.message },
+//         { status: 500 }
+//       );
+//     } else {
+//       console.error("Unexpected error", error);
+//       return NextResponse.json(
+//         { error: "Internal Server Error", details: "Unknown error occurred" },
+//         { status: 500 }
+//       );
+//     }
+//   }
+// }
+
 import { NextRequest, NextResponse } from "next/server";
 import { sendMail } from "@/lib/mail/mail";
 import {
   buildAdminEmail,
   buildUserConfirmationEmail,
 } from "@/lib/mail/mailTemplate";
-import { connectMongoDB } from "@/lib/mail/mongodbConnectoon";
-import { Contact } from "../../../../models/Contact";
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,10 +84,6 @@ export async function POST(req: NextRequest) {
     }
 
     const formData = { name, number, country, email, reason };
-
-    // await connectMongoDB();
-
-    // const savedData = await Contact.create(formData);
 
     // ✅ Send admin email
     const adminHtml = buildAdminEmail(formData);
@@ -45,7 +105,6 @@ export async function POST(req: NextRequest) {
       message: "Form submitted successfully!",
       adminMail: adminResult.response,
       userMail: userResult.response,
-      // savedId: savedData._id,
     });
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -63,6 +122,10 @@ export async function POST(req: NextRequest) {
     }
   }
 }
+
+
+
+
 
 // import { NextRequest, NextResponse } from 'next/server';
 // import { connectMongoDB } from '@/lib/db';
