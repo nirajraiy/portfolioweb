@@ -46,14 +46,16 @@ const Skills = () => {
           </ul>
         </div>
 
-        <div className="skill-category">
+         <div className="skill-category">
           <h2>Tools & Platforms</h2>
           <ul>
-            <li>Git,</li>
+            <li>Git</li>
             <li>Postman, Swagger</li>
-            <li>Firebase (Auth, notification)</li>
+            <li>Firebase (Auth, Notification)</li>
+            <li>Vercel</li>
           </ul>
         </div>
+
 
         <div className="skill-category">
           <h2>Soft Skills</h2>
