@@ -5,7 +5,7 @@
 }
 
 /* Overall Section */
-.contact-section {
+.contactSection {
   background: #0d0d0d;
   padding: 1.5rem 1rem;
   min-height: 100vh;
@@ -16,7 +16,7 @@
 }
 
 /* Form Container */
-.contact-form {
+.contactForm {
   background: #1c1c1e;
   padding: 2.5rem 2.5rem;
   border-radius: 16px;
@@ -28,7 +28,7 @@
 }
 
 /* Title */
-.contact-form h2 {
+.contactForm h2 {
   text-align: center;
   font-size: 2rem;
   color: #ffb347;
@@ -37,12 +37,12 @@
 }
 
 /* Form Group */
-.form-group {
+.formGroup {
   margin-bottom: 1.5rem;
 }
 
 /* Label Styling */
-.form-group label {
+.formGroup label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
@@ -50,9 +50,9 @@
 }
 
 /* Input, Select, Textarea */
-.form-group input,
-.form-group select,
-.form-group textarea {
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #333;
@@ -65,15 +65,15 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.form-group textarea {
+.formGroup textarea {
   min-height: 100px;
   resize: vertical;
 }
 
 /* On Focus */
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
   border-color: #ff6600;
   box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.25);
 }
@@ -106,18 +106,18 @@ button:hover {
 }
 
 /* Mobile Responsive */
-@media (max-width: 600px) {
-  .contact-form {
+@media (max-width: 768px) {
+  .contactForm {
     padding: 2rem 1.5rem;
   }
 
-  .contact-form h2 {
+  .contactForm h2 {
     font-size: 1.6rem;
   }
 
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
+  .formGroup input,
+  .formGroup select,
+  .formGroup textarea {
     font-size: 0.95rem;
   }
 }

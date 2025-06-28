@@ -265,11 +265,11 @@ const validateField = (name: string, value: string) => {
 // };
 
   return (
-    <section className="contact-section">
-        <form className="contact-form" onSubmit={handleSubmit}>
+    <section className="contactSection">
+        <form className="contactForm" onSubmit={handleSubmit}>
           <h2>Contact Us</h2>
 
-          <div className="form-group">
+          <div className="formGroup">
             <label>Name *</label>
             <input
               type="text"
@@ -283,7 +283,7 @@ const validateField = (name: string, value: string) => {
             )}
           </div>
 
-          <div className="form-group">
+          <div className="formGroup">
             <label>Email *</label>
             <input
               type="email"
@@ -297,7 +297,7 @@ const validateField = (name: string, value: string) => {
             )}
           </div>
 
-          <div className="form-group">
+          <div className="formGroup">
             <label>Country</label>
             <select
               name="country"
@@ -312,7 +312,7 @@ const validateField = (name: string, value: string) => {
             </select>
           </div>
 
-          <div className="form-group">
+          <div className="formGroup">
             <label>Contact Number *</label>
             <input
               type="text"
@@ -327,7 +327,7 @@ const validateField = (name: string, value: string) => {
             )}
           </div>
 
-          <div className="form-group">
+          <div className="formGroup">
             <label>Reason *</label>
             <textarea
               name="reason"

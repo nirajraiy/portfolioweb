@@ -1,10 +1,12 @@
 "use client";
 import Image from "next/image";
 import styles from "./styles/Hero.module.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaPlay, FaPause, FaDownload } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
+  const router = useRouter();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -75,13 +77,13 @@ export default function Hero() {
         />
 
         <div className={styles.stats}>
-          <button>
+          <button onClick={() => router.push("/site/experience")}>
             <strong>02+</strong> Years Of Experience
           </button>
-          <button>
+          <button onClick={() => router.push("/site/projects")}>
             <strong>9</strong> Project Completed
           </button>
-          <button>
+          <button onClick={() => router.push("/site/projects")}>
             <strong>15</strong> Project Running
           </button>
         </div>
@@ -94,8 +96,7 @@ export default function Hero() {
             alt="Niraj"
             width={250}
             height={300}
-            // layout="fill"
-            objectFit="cover"
+            style={{ objectFit: "cover" }}
             priority
           />
         </div>
