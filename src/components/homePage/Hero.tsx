@@ -79,7 +79,7 @@ export default function Hero() {
             <strong>02+</strong> Years Of Experience
           </button>
           <button>
-            <strong>10</strong> Project Completed
+            <strong>9</strong> Project Completed
           </button>
           <button>
             <strong>15</strong> Project Running
@@ -95,7 +95,7 @@ export default function Hero() {
             width={250}
             height={300}
             // layout="fill"
-    objectFit="cover"
+            objectFit="cover"
             priority
           />
         </div>

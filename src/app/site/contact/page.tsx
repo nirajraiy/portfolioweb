@@ -66,37 +66,64 @@ const Contact = () => {
     setTouched((prev) => ({ ...prev, [name]: true }));
     validateField(name, value);
   };
+const validateField = (name: string, value: string) => {
+  let message = "";
 
-  const validateField = (name: string, value: string) => {
-    let message = "";
-
-    if (name === "name" && !value.trim()) {
-      message = "Name is required.";
-    }
-
-    if (name === "number") {
-      if (!value.trim()) {
-        message = "Contact number is required.";
-      } else if (!countryRegex[formData.country].test(value)) {
-        message = `Invalid number for ${formData.country}`;
-      }
-    }
-
+  // Check if the field is empty
+  if (!value.trim()) {
+    message = `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`;
+  } else {
+    // Email format check
     if (name === "email") {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!value.trim()) {
-        message = "Email is required.";
-      } else if (!emailRegex.test(value)) {
-        message = "Invalid email address.";
+      if (!emailRegex.test(value)) {
+        message = "Invalid email format.";
       }
     }
 
-    if (name === "reason" && !value.trim()) {
-      message = "Reason is required.";
+    // Number format check
+    if (name === "number") {
+      const regex = countryRegex[formData.country];
+      if (!regex.test(value)) {
+        message = `Invalid number format for ${formData.country}.`;
+      }
     }
+  }
 
-    setErrors((prev) => ({ ...prev, [name]: message }));
-  };
+  setErrors((prev) => ({ ...prev, [name]: message }));
+};
+
+
+  // const validateField = (name: string, value: string) => {
+  //   let message = "";
+
+  //   if (name === "name" && !value.trim()) {
+  //     message = "Name is required.";
+  //   }
+
+  //   if (name === "number") {
+  //     if (!value.trim()) {
+  //       message = "Contact number is required.";
+  //     } else if (!countryRegex[formData.country].test(value)) {
+  //       message = `Invalid number for ${formData.country}`;
+  //     }
+  //   }
+
+  //   if (name === "email") {
+  //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //     if (!value.trim()) {
+  //       message = "Email is required.";
+  //     } else if (!emailRegex.test(value)) {
+  //       message = "Invalid email address.";
+  //     }
+  //   }
+
+  //   if (name === "reason" && !value.trim()) {
+  //     message = "Reason is required.";
+  //   }
+
+  //   setErrors((prev) => ({ ...prev, [name]: message }));
+  // };
 
   // const handleSubmit = (e: React.FormEvent) => {
   //   e.preventDefault();
@@ -118,25 +145,46 @@ const Contact = () => {
   //     setErrors({ name: "", number: "", email: "", reason: "" });
   //   }
   // };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+ const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
   const fields = ["name", "number", "email", "reason"];
+  let newErrors: typeof errors = { name: "", number: "", email: "", reason: "" };
   let allValid = true;
 
+  // Validate all fields
   fields.forEach((field) => {
     const value = formData[field as keyof typeof formData];
-    validateField(field, value);
-    if (!value.trim() || errors[field as keyof typeof errors]) {
+
+    if (!value.trim()) {
+      newErrors[field as keyof typeof errors] = `${field.charAt(0).toUpperCase() + field.slice(1)} is required.`;
       allValid = false;
+    } else {
+      if (field === "email") {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+          newErrors.email = "Invalid email format.";
+          allValid = false;
+        }
+      }
+
+      if (field === "number") {
+        const regex = countryRegex[formData.country];
+        if (!regex.test(value)) {
+          newErrors.number = `Invalid number format for ${formData.country}.`;
+          allValid = false;
+        }
+      }
     }
   });
+
+  setErrors(newErrors);
+  setTouched({ name: true, number: true, email: true, reason: true });
 
   if (!allValid) return;
 
   try {
-      setLoading(true)
+    setLoading(true);
 
     const response = await fetch("/api/contact", {
       method: "POST",
@@ -148,28 +196,73 @@ const Contact = () => {
 
     if (response.ok) {
       alert("✅ Form submitted successfully!");
-      setFormData({
-        name: "",
-        number: "",
-        country: "India",
-        email: "",
-        reason: "",
-      });
+      setFormData({ name: "", number: "", country: "India", email: "", reason: "" });
       setTouched({ name: false, number: false, email: false, reason: false });
       setErrors({ name: "", number: "", email: "", reason: "" });
-
-      console.log("Admin Mail:", result.adminMail);
-      console.log("User Mail:", result.userMail);
     } else {
-      alert("❌ Failed: " + result.error || "Unexpected error occurred");
+      alert("❌ Failed: " + (result.error || "Unexpected error occurred"));
     }
   } catch (error) {
     console.error("Submission error:", error);
     alert("❌ Network/server error.");
   } finally {
-      setLoading(false)
+    setLoading(false);
   }
 };
+
+
+
+//   const handleSubmit = async (e: React.FormEvent) => {
+//   e.preventDefault();
+
+//   const fields = ["name", "number", "email", "reason"];
+//   let allValid = true;
+
+//   fields.forEach((field) => {
+//     const value = formData[field as keyof typeof formData];
+//     validateField(field, value);
+//     if (!value.trim() || errors[field as keyof typeof errors]) {
+//       allValid = false;
+//     }
+//   });
+
+//   if (!allValid) return;
+
+//   try {
+//       setLoading(true)
+
+//     const response = await fetch("/api/contact", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(formData),
+//     });
+
+//     const result = await response.json();
+
+//     if (response.ok) {
+//       alert("✅ Form submitted successfully!");
+//       setFormData({
+//         name: "",
+//         number: "",
+//         country: "India",
+//         email: "",
+//         reason: "",
+//       });
+//       setTouched({ name: false, number: false, email: false, reason: false });
+//       setErrors({ name: "", number: "", email: "", reason: "" });
+
+//       console.log("Admin Mail:", result.adminMail);
+//       console.log("User Mail:", result.userMail);
+//     } else {
+//       alert("❌ Failed: " + result.error || "Unexpected error occurred");
+//     }
+//   } catch (error) {
+//     console.error("Submission error:", error);
+//     alert("❌ Network/server error.");
+//   } finally {
+//       setLoading(false)
+//   }
+// };
 
   return (
     <section className="contact-section">
