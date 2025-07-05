@@ -149,7 +149,7 @@ const validateField = (name: string, value: string) => {
   e.preventDefault();
 
   const fields = ["name", "number", "email", "reason"];
-  let newErrors: typeof errors = { name: "", number: "", email: "", reason: "" };
+  const newErrors: typeof errors = { name: "", number: "", email: "", reason: "" };
   let allValid = true;
 
   // Validate all fields

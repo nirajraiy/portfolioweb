@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import styles from "./styles/Hero.module.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { FaPlay, FaPause, FaDownload } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
