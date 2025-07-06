@@ -80,11 +80,13 @@ export default function Hero() {
           <button onClick={() => router.push("/site/experience")}>
             <strong>02+</strong> Years Of Experience
           </button>
-          <button onClick={() => router.push("/site/projects")}>
+          <button
+            onClick={() => router.push("/site/projects?section=completed")}
+          >
             <strong>9</strong> Project Completed
           </button>
-          <button onClick={() => router.push("/site/projects")}>
-            <strong>15</strong> Project Running
+          <button onClick={() => router.push("/site/projects?section=running")}>
+            <strong>10</strong> Project Running
           </button>
         </div>
       </div>
