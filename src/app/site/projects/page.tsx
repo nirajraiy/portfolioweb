@@ -122,7 +122,7 @@ const livedProjects: Project[] = [
     ],
     image: "/projectpage.jpeg",
     appLink: {
-      android: "", // replace with actual link if different
+      android: "",
       ios: "https://apps.apple.com/us/app/keljhani/id6738165759",
     },
   },
@@ -161,12 +161,11 @@ const livedProjects: Project[] = [
     appLink: {
       android:
         "https://play.google.com/store/apps/details?id=com.istilongpinoyhairsalon&hl=en_IN", // Replace with actual link if available
-      ios: "", // Add when available
+      ios: "",
     },
   },
 ];
 
-// Running Projects (dummy)
 const runningProjects: Project[] = [
   {
     title: "Qwaiting App",
@@ -291,9 +290,6 @@ const runningProjects: Project[] = [
     ],
     image: "/projectpage.jpeg",
   },
-
-  
-
 ];
 
 const ProjectsPage: React.FC = () => {
