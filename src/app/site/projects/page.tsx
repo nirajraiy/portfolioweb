@@ -25,19 +25,10 @@ const livedProjects: Project[] = [
     title: "Portfolio website",
     description:
       "A personal portfolio website showcasing developer details, contact information, alert notifications, project highlights, technical skills, and professional experience—all in a clean and responsive layout.",
-    tech: [
-      "Next js",
-      "Typescript",
-      "mailer",
-      "Database",
-      "Rest API",
-      "Vercel",
-    ],
+    tech: ["Next js", "Typescript", "mailer", "Database", "Rest API", "Vercel"],
     image: "/projectpage.jpeg",
     appLink: {
-      android:
-        "https://portfolioweb-phi-one.vercel.app/", // Replace with actual link
-    
+      android: "https://portfolioweb-phi-one.vercel.app/", // Replace with actual link
     },
   },
   {
@@ -80,23 +71,17 @@ const livedProjects: Project[] = [
     },
   },
   {
-  title: "After Life App",
-  description:
-    "An all-in-one estate planning mobile app designed to simplify the process of creating and managing Wills. Offers expert Shariah-compliant guidance, robust security, comprehensive asset management, and seamless integration—ensuring your legacy is protected and updated with ease.",
-  tech: [
-    "React Native",
-    "TypeScript",
-    "Redux",
-    "REST API",
-    "Cli",
-  ],
-  image: "/projectpage.jpeg",
-  appLink: {
-    android:
-      "https://play.google.com/store/apps/details?id=com.stellenafterlife", // Replace with actual link
-    ios: "",
+    title: "After Life App",
+    description:
+      "An all-in-one estate planning mobile app designed to simplify the process of creating and managing Wills. Offers expert Shariah-compliant guidance, robust security, comprehensive asset management, and seamless integration—ensuring your legacy is protected and updated with ease.",
+    tech: ["React Native", "TypeScript", "Redux", "REST API", "Cli"],
+    image: "/projectpage.jpeg",
+    appLink: {
+      android:
+        "https://play.google.com/store/apps/details?id=com.stellenafterlife", // Replace with actual link
+      ios: "",
+    },
   },
-},
   {
     title: "Smart Salon Check-In App",
     description:
@@ -183,19 +168,131 @@ const livedProjects: Project[] = [
 // Running Projects (dummy)
 const runningProjects: Project[] = [
   {
-    title: "Wellness 360 – Health and Fitness Companion",
+    title: "Qwaiting App",
     description:
-      "A mobile app under development focused on holistic wellness, combining fitness tracking, meditation, meal planning, and daily goal setting.",
-    tech: ["React Native", "TypeScript", "Redux Toolkit", "GraphQL"],
+      "Qwaiting is a smart, multi-platform queue management system that streamlines customer service across mobile, iPads, self-service kiosks, and TV displays. Built with React Native, REST APIs, and Pusher, it offers real-time queue tracking, appointment scheduling, and live notifications — delivering a seamless experience for both customers and staff.",
+    tech: [
+      "React Native",
+      "Javascript",
+      "RestApi",
+      "Pusher",
+      "Universal Printer",
+      "VideoPlayer",
+    ],
     image: "/projectpage.jpeg",
   },
   {
-    title: "EduSpark LMS – Learning Management System",
+    title: "Qwaiting Display App",
     description:
-      "An educational platform in progress to deliver interactive courses, real-time progress tracking, and certification for learners and institutions.",
-    tech: ["Next.js", "TypeScript", "MongoDB", "Tailwind CSS"],
+      "The Qwaiting Display App is a dedicated screen interface designed to show real-time queue status and service-related videos in customer-facing areas. Built with Kotlin and powered by Pusher for live updates, it continuously displays the current token number, service counter, and queue status. Using ExoPlayer, it also plays client-specific videos related to services, instructions, or promotions—ensuring customers stay informed and engaged while waiting.",
+    tech: ["Android Development", "Kotlin", "Pusher", "XML", "ExoPlayer"],
     image: "/projectpage.jpeg",
   },
+  {
+    title: "Docon App",
+    description: "Docon App is a comprehensive Hospital Management System designed to streamline and automate hospital operations. It integrates patient registration, appointment scheduling, electronic medical records (EMR), billing, and staff management into a unified platform. Built for efficiency and accuracy, Docon App enhances communication between patients, doctors, and administrative staff, improving overall healthcare delivery.",
+    tech: [
+      "React Native",
+      "Javascript",
+      "RestApi",
+      "Redux",
+      "Cli",
+      "Stripe Payment Gateway"
+    ],
+    image: "/projectpage.jpeg",
+  },
+   {
+    title: "SkyBurd App",
+    description: "",
+     tech: [
+      "React Native",
+      "Typescript",
+      "RestApi",
+      "Redux",
+      "Cli",
+    ],
+    image: "/projectpage.jpeg",
+  },
+  {
+    title: "Idp",
+    description: "A smart and efficient Queue Management System (QMS) designed to streamline both appointment booking and walk-in customer management for businesses such as salons, clinics, wellness centers, and service providers. This system is built to enhance the user experience by minimizing wait times, reducing manual scheduling errors, and improving staff efficiency.em",
+     tech: [
+      "React Native",
+      "Javascript",
+      "RestApi",
+      "Redux",
+      "Cli",
+      "Pusher",
+      "Push Notification"
+    ],
+    image: "/projectpage.jpeg",
+  },
+  {
+    title: "AppointEze App",
+    description: "AppoitEze App is a powerful and easy-to-use mobile solution designed for salons, spas, beauty parlors, and wellness centers to manage their day-to-day operations effortlessly. From appointment scheduling to billing, staff coordination to inventory tracking — AppoitEze brings every essential business function into one smart app. Built with modern salon owners in mind, AppoitEze helps streamline workflows, reduce no-shows, and enhance client satisfaction — whether you're managing a single location or multiple branches.",
+     tech: [
+      "React Native",
+      "Typescript",
+      "RestApi",
+      "Redux",
+      "Cli",
+    ],
+    image: "/projectpage.jpeg",
+  },
+  {
+    title: "Zayada App",
+    description: "Zayada App is an all-in-one platform designed to help businesses manage sales processes and track project progress step by step. From lead generation to final delivery, the app gives teams complete visibility and control over every stage of the sales pipeline and project lifecycle.",
+     tech: [
+      "React Native",
+      "Typescript",
+      "RestApi",
+      "Context API",
+      "Cli",
+    ],
+    image: "/projectpage.jpeg",
+  },
+  {
+    title: "AwebstarRoom",
+    description: "AwebstarRoom is a modern meeting room management solution designed to help teams and organizations efficiently schedule, check, and visit meetings across shared workspaces. The system allows users to view real-time room availability, book meeting slots, and check the current status of any meeting room to avoid conflicts or overlaps.",
+     tech: [
+      "React Native",
+      "Javascript",
+      "RestApi",
+      "Redux",
+      "Cli",
+      "Pusher",
+      "Push Notification"
+    ],
+    image: "/projectpage.jpeg",
+  },
+  {
+    title: "AwebstarVisitor App",
+    description: "Awebstar Visitor is a modern and secure digital visitor management app designed to replace outdated paper logbooks. It simplifies and automates the process of registering, tracking, and managing visitors in any workplace or facility — enhancing security, professionalism, and efficiency. Whether you're managing an office, hospital, school, or government building, Awebstar Visitor ensures a seamless check-in experience for guests while giving admins full control and visibility over entry and exit data.",
+     tech: [
+      "React Native",
+      "Javascript",
+      "RestApi",
+      "Redux",
+      "Cli",
+    ],
+    image: "/projectpage.jpeg",
+  },
+    {
+    title: "WideStar App",
+    description: "WideStar App is a simple and user-friendly mobile app that allows customers to easily book appointments and reserve service slots with their favorite businesses — whether it’s a salon, clinic, fitness center, spa, or any service-based provider. With just a few taps, users can browse available time slots, choose a service, select their preferred provider, and confirm a booking — all in real time.",
+     tech: [
+      "React Native",
+      "Javascript",
+      "RestApi",
+      "Redux",
+      "Cli",
+      "Pay Stack"
+    ],
+    image: "/projectpage.jpeg",
+  },
+
+  
+
 ];
 
 const ProjectsPage: React.FC = () => {
@@ -228,7 +325,16 @@ const ProjectsPage: React.FC = () => {
         </div>
         {project.appLink && (
           <div className="store-links">
-            {project.appLink.android && (
+            {project.appLink.android && project.title == "Portfolio website" ? (
+              <a
+                href={project.appLink.android}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="store-button android"
+              >
+                Web App
+              </a>
+            ) : (
               <a
                 href={project.appLink.android}
                 target="_blank"
@@ -269,8 +375,6 @@ const ProjectsPage: React.FC = () => {
 };
 
 export default ProjectsPage;
-
-
 
 // "use client";
 
