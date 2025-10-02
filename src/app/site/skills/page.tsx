@@ -8,8 +8,6 @@ import {
   FaTools, 
   FaUsers, 
   FaReact,
-  FaJs,
-  FaGitAlt,
   FaFire,
   FaServer
 } from "react-icons/fa";

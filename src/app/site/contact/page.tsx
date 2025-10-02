@@ -172,7 +172,7 @@ const Contact = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: "easeOut" as const,
       }
     }
   };
@@ -208,7 +208,7 @@ const Contact = () => {
       >
         <motion.div className="contactHeader" variants={itemVariants}>
           <h1>Get In Touch</h1>
-          <p>Ready to work together? Let's discuss your next project!</p>
+          <p>Ready to work together? Let&apos;s discuss your next project!</p>
         </motion.div>
 
         <div className="contactContent">

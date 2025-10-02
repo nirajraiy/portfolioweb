@@ -148,7 +148,7 @@ export default function Hero() {
           <p>
             I architect and develop enterprise-grade mobile applications using React Native,
             TypeScript, and modern development practices. With 2.5+ years of experience,
-            I've delivered 10+ production apps serving 50K+ users with 99.7% crash-free performance.
+            I&apos;ve delivered 10+ production apps serving 50K+ users with 99.7% crash-free performance.
           </p>
         </motion.div>
 

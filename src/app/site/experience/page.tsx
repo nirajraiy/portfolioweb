@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaRocket, FaCode, FaMobile, FaCalendar, FaMapMarkerAlt, FaExternalLinkAlt } from "react-icons/fa";
+import { FaRocket, FaCode, FaMobile, FaCalendar, FaMapMarkerAlt, } from "react-icons/fa";
 import "./styles.css";
 
 const experiences = [
@@ -70,7 +70,7 @@ const ExperiencePage = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: "easeOut" as const,
       }
     }
   };

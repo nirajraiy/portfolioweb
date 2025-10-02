@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { FaBars, FaTimes, FaGithub, FaLinkedin, FaDownload } from "react-icons/fa";
+import { FaTimes, FaGithub, FaLinkedin } from "react-icons/fa";
 import styles from "./stylesHomePage/Navbar.module.css";
-import Buttons from "./Buttons";
+// import Buttons from "./Buttons";
 
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
