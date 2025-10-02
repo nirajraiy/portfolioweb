@@ -1,222 +1,450 @@
-/* Default visibility */
-.desktopOnly {
-  display: block;
-}
-
-.mobileOnly {
-  display: none;
-}
-
-/* On mobile screen */
-@media (max-width: 768px) {
-  .desktopOnly {
-    display: none !important;
-  }
-
-  .mobileOnly {
-    display: block !important;
-  }
-}
-
-
+/* Modern Professional Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 7px 40px;
-  background: #0d0d0d;
-  color: white;
-  flex-wrap: wrap;
-  position: sticky;
+  padding: 20px 60px;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 165, 0, 0.1);
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(255, 165, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* Logo */
 .logo {
-  font-size: 24px;
-  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.logo span {
-  color: orange;
+.logoText {
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-/* Desktop Nav */
+.logoAccent {
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffa500, #ff6b35);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.logoSubtitle {
+  font-size: 12px;
+  color: #b3b3b3;
+  font-weight: 500;
+  margin-top: -2px;
+  letter-spacing: 0.5px;
+}
+
+/* Navigation Links */
 .navLinks {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 40px;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.navLinks li {
+.navItem {
+  font-size: 16px;
+  font-weight: 500;
+  color: #b3b3b3;
   cursor: pointer;
   position: relative;
+  transition: all 0.3s ease;
+  padding: 8px 0;
 }
 
-.navLinks li::after {
-  content: "";
-  display: block;
-  height: 2px;
-  background: orange;
-  width: 0;
-  transition: width 0.3s;
+.navItem::after {
+  content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: 0;
   left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ffa500, #ff6b35);
+  transition: width 0.3s ease;
 }
 
-.navLinks li:hover::after {
+.navItem:hover::after,
+.navItem.active::after {
   width: 100%;
 }
 
+.navItem:hover,
+.navItem.active {
+  color: #ffa500;
+}
+
+/* Navigation Actions */
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .contactBtn {
-  background: white;
-  color: black;
-  padding: 10px 16px;
-  border-radius: 5px;
-  text-align: center;
-  margin-top: 5px;
-  font-weight: 500;
-  transition: background 0.3s, transform 0.2s, color 0.3s;
-  cursor: pointer;
-  width: fit-content;
-  /* 🔥 Prevent resizing */
-  outline: none;
-  /* background: white;
-  color: black;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.2s, background 0.2s; */
-}
-
-.contactBtn:hover {
-  background: orange;
+  background: linear-gradient(135deg, #ffa500, #ff6b35);
   color: white;
-  /* transform: scale(1.05); */
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Hamburger */
+.contactBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.contactBtn:hover::before {
+  left: 100%;
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.socialLinks a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #ffa500;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.socialLinks a:hover {
+  background: rgba(255, 165, 0, 0.1);
+  border-color: rgba(255, 165, 0, 0.3);
+  color: white;
+}
+
+/* Hamburger Menu */
 .hamburger {
   display: none;
   flex-direction: column;
   gap: 4px;
   cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+  outline: none;
 }
 
 .hamburger span {
   width: 25px;
   height: 3px;
   background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
 }
 
 /* Drawer */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 998;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 999;
 }
+
 .drawer {
   position: fixed;
   top: 0;
   left: 0;
-  width: 75%;
-  max-width: 300px;
+  width: 320px;
+  max-width: 85vw;
   height: 100vh;
-  background: #111;
-  z-index: 999;
-  padding: 20px;
+  background: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 165, 0, 0.2);
+  z-index: 1000;
+  padding: 0;
   display: flex;
   flex-direction: column;
 }
 
-/* .drawer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 75%;
-  height: 100vh;
-  background: #111;
-  color: white;
-  padding: 20px;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-} */
-
-.drawerOpen {
-  transform: translateX(0);
-}
-
-/* Sticky drawer contents */
 .drawerHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  background: #111;
-  padding-bottom: 10px;
-  z-index: 100;
+  padding: 30px 25px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .closeIcon {
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+  font-size: 18px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.closeIcon:hover {
+  background: rgba(255, 165, 0, 0.1);
+  border-color: rgba(255, 165, 0, 0.3);
+  color: #ffa500;
 }
 
 .drawerLogo {
-  font-size: 20px;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
 }
 
-.drawerLogo span {
-  color: orange;
+.drawerLogo .logoText {
+  font-size: 24px;
+}
+
+.drawerLogo .logoAccent {
+  font-size: 24px;
 }
 
 .drawerLinks {
+  flex: 1;
+  padding: 30px 0;
   list-style: none;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 20px;
 }
 
-.drawerLinks li {
+.drawerLink {
+  padding: 20px 25px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #b3b3b3;
   cursor: pointer;
-  padding: 10px 0;
-  border-bottom: 1px solid #333;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.drawerLink::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 165, 0, 0.1), rgba(255, 105, 53, 0.1));
+  transition: width 0.3s ease;
+}
+
+.drawerLink:hover::before,
+.drawerLink.active::before {
+  width: 100%;
+}
+
+.drawerLink:hover,
+.drawerLink.active {
+  color: #ffa500;
+  background: rgba(255, 165, 0, 0.05);
+}
+
+.drawerActions {
+  padding: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .drawerContactBtn {
-  background: white;
-  color: black;
-  padding: 10px 16px;
-  border-radius: 5px;
+  background: linear-gradient(135deg, #ffa500, #ff6b35);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
   text-align: center;
-  margin-top: 20px;
-  outline: none;
 }
 
+.drawerContactBtn:hover {
+  box-shadow: 0 8px 25px rgba(255, 165, 0, 0.3);
+}
 
-/* Mobile Only */
-@media screen and (max-width: 768px) {
+.drawerSocial {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.drawerSocial a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #ffa500;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.drawerSocial a:hover {
+  background: rgba(255, 165, 0, 0.1);
+  border-color: rgba(255, 165, 0, 0.3);
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
   .navbar {
-    flex-direction: row-reverse;
-    padding: 16px 24px;
+    padding: 20px 40px;
   }
+  
+  .navLinks {
+    gap: 30px;
+  }
+  
+  .navItem {
+    font-size: 15px;
+  }
+}
 
+@media (max-width: 968px) {
+  .navbar {
+    padding: 20px 30px;
+  }
+  
   .navLinks,
-  .contactBtn {
+  .navActions {
     display: none;
   }
-
+  
   .hamburger {
     display: flex;
+  }
+  
+  .logoSubtitle {
+    display: none;
+  }
+  
+  .logoText,
+  .logoAccent {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+  
+  .drawer {
+    width: 280px;
+  }
+  
+  .drawerHeader {
+    padding: 25px 20px 15px;
+  }
+  
+  .drawerLink {
+    padding: 18px 20px;
+    font-size: 16px;
+  }
+  
+  .drawerActions {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 15px;
+  }
+  
+  .logoText,
+  .logoAccent {
+    font-size: 20px;
+  }
+  
+  .drawer {
+    width: 100vw;
+    max-width: 100vw;
+  }
+  
+  .drawerHeader {
+    padding: 20px 15px 15px;
+  }
+  
+  .drawerLink {
+    padding: 16px 15px;
+    font-size: 15px;
+  }
+  
+  .drawerActions {
+    padding: 15px;
+  }
+  
+  .drawerContactBtn {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+  
+  .drawerSocial a {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
   }
 }
