@@ -37,14 +37,51 @@ const projects: Project[] = [
     category: 'completed',
     featured: true
   },
-  {
-    title: "Qwaiting Queue Management",
-    description: "A smart, multi-platform queue management system that streamlines customer service across mobile, iPads, self-service kiosks, and TV displays. Built with React Native, REST APIs, and Pusher, it offers real-time queue tracking, appointment scheduling, and live notifications.",
-    tech: ["React Native", "TypeScript", "REST API", "Pusher", "Universal Printer", "VideoPlayer"],
+   {
+    title: "Qwaiting Display TV",
+    description: "Displays live queue status on TVs, keeps customers informed.",
+    tech: ["Swift", "REST API", "Pusher"],
     image: "/projectpage.jpeg",
-    category: 'running',
+    appLink: {
+      ios: "https://apps.apple.com/in/app/qwaiting-display-tv/id6751566287"
+    },
+    // platform: "iOS (Swift)",
+    category: "completed",
     featured: true
   },
+  {
+    title: "Qwaiting - For Staff",
+    description: "Manages queues, walk-ins, and appointments from staff side.",
+    tech: ["React Native", "TypeScript", "REST API"],
+    image: "/projectpage.jpeg",
+    appLink: {
+      ios: "https://apps.apple.com/in/app/qwaiting-for-staff/id6753288266",
+      android: "https://play.google.com/store/apps/details?id=com.qwaiting_staff&hl=en_IN"
+    },
+    // platform: "iOS, Android",
+    category: "completed",
+    featured: true
+  },
+  {
+    title: "Qwaiting - For Customers",
+    description: "Easily join queues, get ticket notifications, and print tokens.",
+    tech: ["React Native", "TypeScript", "REST API", "Pusher", "Universal Printer", "iMini Printer (Sient)"],
+    image: "/projectpage.jpeg",
+    appLink: {
+      android: "https://play.google.com/store/apps/details?id=com.qwaitingtiket&hl=en_IN"
+    },
+    // platform: "Android",
+    category: "completed",
+    featured: true
+  },
+  // {
+  //   title: "Qwaiting Queue Management",
+  //   description: "A smart, multi-platform queue management system that streamlines customer service across mobile, iPads, self-service kiosks, and TV displays. Built with React Native, REST APIs, and Pusher, it offers real-time queue tracking, appointment scheduling, and live notifications.",
+  //   tech: ["React Native", "TypeScript", "REST API", "Pusher", "Universal Printer", "VideoPlayer"],
+  //   image: "/projectpage.jpeg",
+  //   category: 'running',
+  //   featured: true
+  // },
   {
     title: "Salonist Check-In App",
     description: "A user-friendly in-salon app designed to streamline walk-in bookings and quick check-ins for pre-booked clients. Optimized for tablets and kiosks, it reduces wait times and enhances customer experience with secure, fast, and organized appointment management.",
@@ -120,6 +157,18 @@ const projects: Project[] = [
     description: "An all-in-one platform designed to help businesses manage sales processes and track project progress step by step. From lead generation to final delivery, the app gives teams complete visibility and control over every stage.",
     tech: ["React Native", "TypeScript", "REST API", "Context API"],
     image: "/projectpage.jpeg",
+    appLink: {
+      android: "https://play.google.com/store/apps/details?id=com.zayada.sales&hl=en_IN",
+      ios: "https://apps.apple.com/in/app/zayda/id6752843391",
+    },
+    category: 'completed'
+  },
+  {
+     title: "AddPeople",
+    description: "An all-in-one platform designed to help businesses manage sales processes and track project progress step by step. From lead generation to final delivery, the app gives teams complete visibility and control over every stage.",
+    tech: ["React Native", "TypeScript", "REST API", "Context API", "just",],
+    image: "/projectpage.jpeg",
+   
     category: 'running'
   }
 ];
@@ -333,7 +382,7 @@ function ProjectsPageContent() {
           <div className="summary-card">
             <FaPlay className="summary-icon" />
             <div className="summary-content">
-              <h3>50K+</h3>
+              <h3>20K+</h3>
               <p>Active Users</p>
             </div>
           </div>

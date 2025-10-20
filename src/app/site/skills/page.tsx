@@ -197,7 +197,7 @@ const Skills = () => {
           <div className="summary-card">
             <FaUsers className="summary-icon" />
             <div className="summary-content">
-              <h3>50K+ Users</h3>
+              <h3>20K+ Users</h3>
               <p>Served Across Platforms</p>
             </div>
           </div>

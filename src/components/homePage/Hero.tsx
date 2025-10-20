@@ -282,7 +282,7 @@ export default function Hero() {
               <FaMobile />
             </div>
             <div className={styles.statContent}>
-              <strong>50K+</strong>
+              <strong>20K+</strong>
               <span>Active Users</span>
             </div>
           </motion.div>

@@ -11,13 +11,13 @@ const experiences = [
     location: "Mohali, Punjab, India",
     type: "Full-time",
     description: [
-      "Architected and led development of 6 white-label salon booking apps serving 25K+ active users with shared React Native core modules, reducing development time by 40%",
+      "Architected and led development of 6 white-label salon booking apps serving 20K+ active users with shared React Native core modules, reducing development time by 40%",
       "Implemented Redux Toolkit with TypeScript and normalized API layer using RTK Query, eliminating 95% of API-related crashes and improving data consistency",
       "Optimized app performance through code splitting, lazy loading, and image compression, achieving 35% faster startup time and 50% smaller bundle size",
       "Established CI/CD pipeline with Bitrise, Fastlane, and EAS Build, enabling automated testing and 2-week release cycles with 99.8% deployment success rate"
     ],
     technologies: ["React Native", "TypeScript", "Redux Toolkit", "Firebase", "Bitrise", "Fastlane"],
-    achievements: ["20 Apps Delivered", "25K+ Users", "99.7% Crash-Free", "40% Faster Development"]
+    achievements: ["20 Apps Delivered", "20K+ Users", "99.7% Crash-Free", "40% Faster Development"]
   },
   {
     company: "Dev Technosys Pvt Ltd",
@@ -200,7 +200,7 @@ const ExperiencePage = () => {
           <div className="summary-card">
             <FaMobile className="summary-icon" />
             <div className="summary-content">
-              <h3>50K+ Users</h3>
+              <h3>20K+ Users</h3>
               <p>Apps in Production</p>
             </div>
           </div>
