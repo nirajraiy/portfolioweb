@@ -37,6 +37,17 @@ const projects: Project[] = [
     category: 'completed',
     featured: true
   },
+  {
+    title: "Qwaiting - For Display (Android)",
+    description: "A dedicated Android app built with Kotlin that displays live queue status and missed tokens on store displays in real-time. Keeps customers informed about wait times and their queue position with automatic updates using Pusher real-time messaging.",
+    tech: ["Kotlin", "Android", "REST API", "Pusher", "Real-time Updates"],
+    image: "/projectpage.jpeg",
+    appLink: {
+      android: "https://play.google.com/store/apps/details?id=com.qwaiting.qwaitingandroidtv&pcampaignid=web_share"
+    },
+    category: "completed",
+    featured: true
+  },
    {
     title: "Qwaiting Display TV",
     description: "Displays live queue status on TVs, keeps customers informed.",
@@ -139,9 +150,9 @@ const projects: Project[] = [
   },
   // Running Projects
   {
-    title: "Docon Hospital Management",
-    description: "A comprehensive Hospital Management System designed to streamline and automate hospital operations. It integrates patient registration, appointment scheduling, electronic medical records (EMR), billing, and staff management into a unified platform.",
-    tech: ["React Native", "TypeScript", "REST API", "Redux", "Stripe Payment Gateway"],
+    title: "Adlife Hospital Management",
+    description: "A multi-level healthcare app built for diverse patient journeys, with dedicated pediatric care flows for ages 0-6, 7-12, and 13-18, plus separate school, student, and women’s health paths. The app manages patient registration, appointments, EMR, medications, and personalized care guidance, while supporting robust caching, offline resilience, and integrated end-to-end testing for reliable production readiness.",
+    tech: ["React Native", "TypeScript", "REST API", "Redux", "Stripe Payment Gateway", "Caching", "E2E Testing"],
     image: "/projectpage.jpeg",
     category: 'running'
   },
@@ -164,12 +175,16 @@ const projects: Project[] = [
     category: 'completed'
   },
   {
-     title: "AddPeople",
-    description: "An all-in-one platform designed to help businesses manage sales processes and track project progress step by step. From lead generation to final delivery, the app gives teams complete visibility and control over every stage.",
-    tech: ["React Native", "TypeScript", "REST API", "Context API", "just",],
+    title: "AddPeople",
+    description: "A doctor scheduling and camp management platform that helps healthcare organizations assign doctors to medical camps, track attendance, and manage camp finances. Features appointment scheduling, doctor availability management, and comprehensive reporting for efficient field team coordination.",
+    tech: ["React Native", "TypeScript", "REST API", "Context API", "Firebase"],
     image: "/projectpage.jpeg",
-   
-    category: 'running'
+    appLink: {
+      android: "https://play.google.com/store/apps/details?id=com.adpeople&pcampaignid=web_share",
+      ios: "https://apps.apple.com/us/app/adpeople/id6756572493"
+    },
+    category: 'completed',
+    featured: true
   }
 ];
 

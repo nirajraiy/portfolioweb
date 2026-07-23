@@ -125,7 +125,7 @@ export default function Hero() {
           transition={{ delay: 0.2, duration: 0.6 }}
         >
           <FaCode className={styles.icon} />
-          <span>Senior React Native Developer</span>
+          <span>Senior React Native Mobile Engineer</span>
         </motion.div>
 
         <motion.h1
@@ -135,7 +135,7 @@ export default function Hero() {
         >
           Crafting Digital <br />
           <span className={styles.gradientText}>Excellence</span> <br />
-          Through Mobile & <br />
+          <span>Senior React Native Mobile Engineer</span>
           Web Innovation
         </motion.h1>
 
@@ -146,9 +146,9 @@ export default function Hero() {
           transition={{ delay: 0.6, duration: 0.6 }}
         >
           <p>
-            I architect and develop enterprise-grade mobile applications using React Native,
-            TypeScript, and modern development practices. With 3.5+ years of experience,
-            I&apos;ve delivered 12 apps serving 50K+ users with 99.7% crash-free performance.
+            I architect scalable Android and iOS applications using React Native, TypeScript,
+            MVVM, Clean Architecture, Firebase, and CI/CD. With 3+ years of experience,
+            I&apos;ve delivered 12 apps serving 20K+ users with 99.7% crash-free performance and App Store / Play Store deployment expertise.
           </p>
         </motion.div>
 
@@ -202,7 +202,7 @@ export default function Hero() {
             <span>Download Resume</span>
           </motion.button>
 
-          <motion.button
+          {/* <motion.button
             className={styles.secondaryBtn}
             onClick={toggleAudio}
             whileHover={{
@@ -213,7 +213,7 @@ export default function Hero() {
           >
             {isPlaying ? <FaPause /> : <FaPlay />}
             <span>Listen to Introduction</span>
-          </motion.button>
+          </motion.button> */}
         </motion.div>
 
         <motion.div
@@ -235,7 +235,8 @@ export default function Hero() {
           src="/selfIntro.m4a"
           onTimeUpdate={handleTimeUpdate}
         />
-
+ 
+ 
         <motion.div
           className={styles.stats}
           initial={{ opacity: 0, y: 30 }}
@@ -252,7 +253,7 @@ export default function Hero() {
               <FaRocket />
             </div>
             <div className={styles.statContent}>
-              <strong>3.5+</strong>
+              <strong>3+</strong>
               <span>Years Experience</span>
             </div>
           </motion.div>

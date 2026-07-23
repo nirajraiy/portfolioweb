@@ -42,11 +42,11 @@ const Skills = () => {
       icon: <FaCode />,
       title: "Languages",
       skills: [
-        { name: "TypeScript", level: 90 },
+        { name: "TypeScript", level: 95 },
         { name: "JavaScript (ES6+)", level: 95 },
         { name: "Java", level: 80 },
-        { name: "Kotlin", level: 75 },
-        { name: "C/C++", level: 70 }
+        { name: "Kotlin", level: 80 },
+        { name: "Swift", level: 70 }
       ]
     },
     {
@@ -54,65 +54,76 @@ const Skills = () => {
       title: "Mobile Development",
       skills: [
         { name: "React Native", level: 95 },
-        { name: "iOS Development", level: 85 },
-        { name: "Android Development", level: 90 },
+        { name: "Reanimated", level: 85 },
+        { name: "Gesture Handler", level: 85 },
         { name: "React Navigation", level: 90 },
-        { name: "Redux Toolkit", level: 88 }
+        { name: "Hermes", level: 80 }
       ]
     },
     {
       icon: <FaReact />,
-      title: "Frontend",
+      title: "Architecture & Patterns",
       skills: [
-        { name: "React.js", level: 90 },
-        { name: "Next.js", level: 85 },
-        { name: "HTML5/CSS3", level: 95 },
-        { name: "Context API", level: 85 },
-        { name: "Responsive Design", level: 90 }
+        { name: "MVVM", level: 90 },
+        { name: "Clean Architecture", level: 90 },
+        { name: "SOLID Principles", level: 90 },
+        { name: "Design Patterns", level: 85 },
+        { name: "Dependency Injection", level: 80 }
       ]
     },
     {
       icon: <FaServer />,
-      title: "Backend & APIs",
+      title: "APIs & Integration",
       skills: [
-        { name: "Next.js API Routes", level: 85 },
-        { name: "RESTful APIs", level: 90 },
-        { name: "GraphQL", level: 70 },
-        { name: "Node.js", level: 80 },
-        { name: "Express.js", level: 75 }
+        { name: "RESTful APIs", level: 95 },
+        { name: "OAuth", level: 85 },
+        { name: "JWT", level: 85 },
+        { name: "Socket.IO", level: 75 },
+        { name: "WebSocket", level: 75 }
       ]
     },
     {
       icon: <FaDatabase />,
-      title: "Database & Storage",
+      title: "Data & Storage",
       skills: [
-        { name: "Firebase", level: 85 },
-        { name: "MongoDB", level: 80 },
-        { name: "MySQL", level: 75 },
-        { name: "SQLite", level: 70 },
-        { name: "AsyncStorage", level: 90 }
+        { name: "SQLite", level: 85 },
+        { name: "Realm", level: 80 },
+        { name: "AsyncStorage", level: 90 },
+        { name: "Secure Storage", level: 80 },
+        { name: "Offline Storage", level: 85 }
       ]
     },
     {
       icon: <FaTools />,
-      title: "Tools & DevOps",
+      title: "DevOps & Release",
       skills: [
-        { name: "Git & GitHub", level: 90 },
-        { name: "Bitrise CI/CD", level: 85 },
+        { name: "CI/CD", level: 90 },
+        { name: "Bitrise", level: 85 },
         { name: "Fastlane", level: 80 },
-        { name: "Postman", level: 85 },
-        { name: "VS Code", level: 95 }
+        { name: "GitHub Actions", level: 80 },
+        { name: "Azure DevOps", level: 70 }
+      ]
+    },
+    {
+      icon: <FaFire />,
+      title: "Testing & Quality",
+      skills: [
+        { name: "Jest", level: 90 },
+        { name: "Detox", level: 80 },
+        { name: "Unit Testing", level: 85 },
+        { name: "Integration Testing", level: 85 },
+        { name: "Crashlytics", level: 80 }
       ]
     },
     {
       icon: <FaUsers />,
-      title: "Soft Skills",
+      title: "Collaboration & Process",
       skills: [
-        { name: "Team Collaboration", level: 95 },
-        { name: "Problem Solving", level: 90 },
-        { name: "Communication", level: 90 },
-        { name: "Agile Development", level: 85 },
-        { name: "Code Review", level: 88 }
+        { name: "Agile", level: 90 },
+        { name: "Scrum", level: 85 },
+        { name: "Jira", level: 85 },
+        { name: "Stakeholder Management", level: 75 },
+        { name: "Product Lifecycle", level: 80 }
       ]
     }
   ];
@@ -183,7 +194,7 @@ const Skills = () => {
           <div className="summary-card">
             <FaFire className="summary-icon" />
             <div className="summary-content">
-              <h3>3.5+ Years</h3>
+              <h3>3+ Years</h3>
               <p>Professional Development Experience</p>
             </div>
           </div>
