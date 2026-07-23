@@ -6,7 +6,7 @@ import './globals.css';
 
 export const metadata = {
   title: 'Niraj Rai | Senior React Native Developer',
-  description: 'Portfolio of Niraj Rai - Senior React Native Developer with 3.5+ years experience building enterprise-grade mobile applications',
+  description: 'Portfolio of Niraj Rai - Senior React Native Developer with 3+ years experience building enterprise-grade mobile applications',
   keywords: 'React Native, TypeScript, Mobile Development, iOS, Android, JavaScript, Portfolio',
   authors: [{ name: 'Niraj Rai' }],
   creator: 'Niraj Rai',
@@ -87,7 +87,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 // export const metadata = {
 //   title: 'Niraj Rai | Senior React Native Developer',
-//   description: 'Portfolio of Niraj Rai - Senior React Native Developer with 3.5+ years experience building enterprise-grade mobile applications',
+//   description: 'Portfolio of Niraj Rai - Senior React Native Developer with 3+ years experience building enterprise-grade mobile applications',
 //   keywords: 'React Native, TypeScript, Mobile Development, iOS, Android, JavaScript, Portfolio',
 //   authors: [{ name: 'Niraj Rai' }],
 //   creator: 'Niraj Rai',
