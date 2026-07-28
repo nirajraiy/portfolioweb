@@ -4,8 +4,6 @@ import Image from "next/image";
 import styles from "./styles/Hero.module.css";
 import { useState, useRef, useEffect } from "react";
 import {
-  FaPlay,
-  FaPause,
   FaDownload,
   FaCode,
   FaMobile,
@@ -19,7 +17,6 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 export default function Hero() {
   const router = useRouter();
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -48,18 +45,6 @@ export default function Hero() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
-
-  const toggleAudio = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
 
   const handleTimeUpdate = () => {
     const audio = audioRef.current;
