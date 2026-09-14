@@ -32,17 +32,32 @@ export default function AboutPage() {
     {
       icon: <FaCode />,
       title: "React Native Expert",
-      description: "Cross-platform mobile app development with 3+ years of experience"
+      description: "3+ years shipping production apps with 20K+ active users. Expert in TypeScript, MVVM, and Clean Architecture"
     },
     {
       icon: <FaMobile />,
       title: "Native Development",
-      description: "Android development using Kotlin & XML UI for enhanced performance"
+      description: "Android (Kotlin/Jetpack) & iOS (Swift/SwiftUI) development with performance optimization and native modules"
     },
     {
       icon: <FaRocket />,
       title: "Full-Stack Solutions",
-      description: "Next.js applications with modern development practices"
+      description: "React.js, Next.js, Vite web applications with shared TypeScript contracts across mobile and web"
+    },
+    {
+      icon: <FaMobile />,
+      title: "Scalable Architecture",
+      description: "MVVM pattern, Clean Architecture, SOLID principles, and TurboModules for high-performance apps"
+    },
+    {
+      icon: <FaCode />,
+      title: "CI/CD & DevOps",
+      description: "Bitrise, Fastlane, GitHub Actions, EAS Build. Reduced release cadence from monthly to biweekly"
+    },
+    {
+      icon: <FaRocket />,
+      title: "App Store Mastery",
+      description: "12 production apps shipped to App Store & Google Play. 99.7% crash-free sessions, 50% bundle size reduction"
     }
   ];
 
@@ -95,15 +110,19 @@ export default function AboutPage() {
             className={styles.badge}
             variants={itemVariants}
           >
-            <span>Senior React Native Mobile Engineer</span>
+            <span>React Native Developer • 3+ Years Experience</span>
           </motion.div>
 
           <h1 className={styles.title}>About Me</h1>
           
           <p className={styles.description}>
-            I am a <strong>Senior React Native Mobile Engineer</strong> with 3+ years of experience 
-            building enterprise-grade Android and iOS applications. I specialize in MVVM-driven, 
-            scalable architecture with React Native, TypeScript, Firebase, CI/CD, and App Store / Play Store deployment.
+            <strong>React Native Developer</strong> with <strong>3+ years</strong> of hands-on experience building and shipping production-grade Android, iOS, and web products end-to-end. 
+            I am a <strong>sole technical owner</strong> of multiple flagship products (Qwaiting, Spark Resto, Smart Review) serving <strong>20,000+ active users</strong>. 
+            Deep expertise in <strong>TypeScript, MVVM architecture, Clean Architecture, React Navigation, Firebase, Redux Toolkit, CI/CD, and App Store / Play Store releases</strong>.
+            <br/><br/>
+            <strong>Key highlights:</strong> Built and shipped <strong>12 production applications</strong>, maintained <strong>99.7% crash-free sessions</strong>, 
+            achieved <strong>50% JS bundle size reduction</strong> and <strong>35% startup performance improvement</strong>. 
+            Strong depth in native modules (Kotlin, Swift), REST APIs, OAuth/JWT, real-time systems (Pusher), and offline-first architecture.
           </p>
 
           <div className={styles.skillsGrid}>
@@ -131,8 +150,9 @@ export default function AboutPage() {
             variants={itemVariants}
           >
             <p>
-              I strive to build <strong>accessible</strong>, <strong>performant</strong>, and <strong>scalable</strong> applications
-              that meet modern development standards and deliver exceptional user experiences.
+              I focus on building <strong>accessible</strong>, <strong>performant</strong>, and <strong>scalable</strong> applications
+              with production-ready architecture, comprehensive CI/CD pipelines, and exceptional user experiences. 
+              I own the full lifecycle from concept through App Store deployment and production maintenance.
             </p>
           </motion.div>
 

@@ -27,8 +27,8 @@ const projects: Project[] = [
   // ... your project data (unchanged) ...
   {
     title: "Smart Review & NPS App",
-    description: "A comprehensive review management app designed to help businesses collect, monitor, and respond to customer feedback from multiple channels. Features include custom ratings, team collaboration, detailed analytics, and automated review requests to boost online reputation and drive growth.",
-    tech: ["React Native", "TypeScript", "Context API", "REST API", "Universal Printer", "Firebase"],
+    description: "An in-venue feedback and NPS collection platform built for service centers. This React Native app enables businesses to collect customer feedback in real-time, track NPS scores, and improve customer satisfaction. Features custom ratings, multi-channel feedback collection, team collaboration, and detailed analytics for actionable insights. Increased review completion by 25% with optimized user flows. Live on App Store and Google Play.",
+    tech: ["React Native", "TypeScript", "Firebase", "Push Notifications", "REST API"],
     image: "/projectpage.jpeg",
     appLink: {
       android: "https://play.google.com/store/apps/details?id=com.smartreviews&hl=en_IN",
@@ -39,7 +39,7 @@ const projects: Project[] = [
   },
   {
     title: "Qwaiting - For Display (Android)",
-    description: "A dedicated Android app built with Kotlin that displays live queue status and missed tokens on store displays in real-time. Keeps customers informed about wait times and their queue position with automatic updates using Pusher real-time messaging.",
+    description: "A dedicated Kotlin Android app for displaying live queue status and missed tokens on store displays in real-time. Part of the comprehensive Qwaiting suite, this app keeps customers informed about wait times and their queue position with automatic updates using Pusher real-time messaging. Designed specifically for large displays in service centers. Live on Google Play.",
     tech: ["Kotlin", "Android", "REST API", "Pusher", "Real-time Updates"],
     image: "/projectpage.jpeg",
     appLink: {
@@ -49,39 +49,36 @@ const projects: Project[] = [
     featured: true
   },
    {
-    title: "Qwaiting Display TV",
-    description: "Displays live queue status on TVs, keeps customers informed.",
-    tech: ["Swift", "REST API", "Pusher"],
+    title: "Qwaiting Display TV (iOS)",
+    description: "A Swift-based iOS app for displaying live queue status on TVs and large displays. As part of the Qwaiting product suite, this app provides real-time queue updates and missed token alerts. Reduced average wait time by 35% with optimized real-time notification delivery. Live on App Store.",
+    tech: ["Swift", "iOS", "REST API", "Pusher", "Real-time Updates"],
     image: "/projectpage.jpeg",
     appLink: {
       ios: "https://apps.apple.com/in/app/qwaiting-display-tv/id6751566287"
     },
-    // platform: "iOS (Swift)",
     category: "completed",
     featured: true
   },
   {
     title: "Qwaiting - For Staff",
-    description: "Manages queues, walk-ins, and appointments from staff side.",
-    tech: ["React Native", "TypeScript", "REST API"],
+    description: "A React Native staff management app for queue handling, walk-in management, and appointment scheduling. Enables service center staff to efficiently manage customer queues, mark attended customers, and handle no-shows. Synced with the customer and display apps via REST APIs for seamless operation. Live on App Store and Google Play.",
+    tech: ["React Native", "TypeScript", "REST API", "Redux Toolkit", "Real-time Updates"],
     image: "/projectpage.jpeg",
     appLink: {
       ios: "https://apps.apple.com/in/app/qwaiting-for-staff/id6753288266",
       android: "https://play.google.com/store/apps/details?id=com.qwaiting_staff&hl=en_IN"
     },
-    // platform: "iOS, Android",
     category: "completed",
     featured: true
   },
   {
     title: "Qwaiting - For Customers",
-    description: "Easily join queues, get ticket notifications, and print tokens.",
-    tech: ["React Native", "TypeScript", "REST API", "Pusher", "Universal Printer", "iMini Printer (Sient)"],
+    description: "A React Native customer app enabling users to join queues, receive ticket notifications, and print digital tokens. Fully integrated with Pusher for real-time updates about queue position and estimated wait times. Supports multiple printer integrations including Universal Printer and iMini Printer. Core component of the Qwaiting queue management suite serving 20K+ active users. Live on Google Play.",
+    tech: ["React Native", "TypeScript", "REST API", "Pusher", "Universal Printer", "Redux Toolkit"],
     image: "/projectpage.jpeg",
     appLink: {
       android: "https://play.google.com/store/apps/details?id=com.qwaitingtiket&hl=en_IN"
     },
-    // platform: "Android",
     category: "completed",
     featured: true
   },
@@ -108,8 +105,8 @@ const projects: Project[] = [
   // Completed Projects
   {
     title: "Spark Resto - Restaurant Management",
-    description: "A powerful restaurant order management app designed to streamline order taking, real-time tracking, and kitchen communication. Features include table-side ordering, customizable menus, centralized dashboard, takeaway options, and comprehensive analytics.",
-    tech: ["React Native", "JavaScript", "REST API", "Context API", "SQLite", "Universal Printer"],
+    description: "An offline-first restaurant Point-of-Sale (POS) system built with React Native and JavaScript. Manages table reservations, order taking, kitchen communication, and bill printing. Features SQLite-based offline storage ensuring order flow continues during network outages. Enables seamless synchronization once connectivity is restored. Designed for full-service restaurants and food establishments. Live on App Store and Google Play.",
+    tech: ["React Native", "JavaScript", "SQLite", "REST API", "Universal Printer", "Offline-First"],
     image: "/projectpage.jpeg",
     appLink: {
       android: "https://play.google.com/store/apps/details?id=com.sparkresto&hl=en_IN",
@@ -176,8 +173,8 @@ const projects: Project[] = [
   },
   {
     title: "AddPeople",
-    description: "A doctor scheduling and camp management platform that helps healthcare organizations assign doctors to medical camps, track attendance, and manage camp finances. Features appointment scheduling, doctor availability management, and comprehensive reporting for efficient field team coordination.",
-    tech: ["React Native", "TypeScript", "REST API", "Context API", "Firebase"],
+    description: "A doctor scheduling and medical-camp management platform that reduces manual coordination and speeds up appointment workflows. Enables healthcare organizations to assign doctors to medical camps, track attendance, manage schedules, and handle camp finances. Features appointment scheduling, doctor availability management, comprehensive reporting, and efficient field team coordination. Built with React Native and TypeScript for reliable cross-platform performance. Live on App Store and Google Play.",
+    tech: ["React Native", "TypeScript", "REST API", "Firebase", "Context API"],
     image: "/projectpage.jpeg",
     appLink: {
       android: "https://play.google.com/store/apps/details?id=com.adpeople&pcampaignid=web_share",

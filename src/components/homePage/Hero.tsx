@@ -110,7 +110,7 @@ export default function Hero() {
           transition={{ delay: 0.2, duration: 0.6 }}
         >
           <FaCode className={styles.icon} />
-          <span>Senior React Native Mobile Engineer</span>
+          <span>React Native Developer • 3+ Years</span>
         </motion.div>
 
         <motion.h1
@@ -120,8 +120,7 @@ export default function Hero() {
         >
           Crafting Digital <br />
           <span className={styles.gradientText}>Excellence</span> <br />
-          <span>Senior React Native Mobile Engineer</span>
-          Web Innovation
+          React Native Developer
         </motion.h1>
 
         <motion.div

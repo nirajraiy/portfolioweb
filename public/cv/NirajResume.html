@@ -3,158 +3,904 @@
 
 <head>
   <meta charset="UTF-8" />
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-  <!-- <title>FANG Developer Resume</title> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <title>Niraj Rai — React Native Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --ink: #121820;
+      --muted: #4a5560;
+      --line: #c8ced6;
+      --accent: #1b3a5c;
+      --accent-soft: #e8eef4;
+      --paper: #ffffff;
+      --page: #dfe3e8;
+    }
+
+    @page {
+      size: A4;
+      margin: 5mm 5mm;
+    }
+
+    @media print {
+      html, body {
+        font-size: 10.5pt;
+        line-height: 1.4;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .resume {
+        width: 100%;
+        max-width: none;
+        padding: 6mm 4mm 1mm;
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 26pt;
+        margin-bottom: 1px;
+        letter-spacing: 0.05em;
+      }
+
+      h2 {
+        font-size: 9.5pt;
+        margin-bottom: 6px;
+        margin-top: 10px;
+        padding: 2px 0 3px 8px;
+        letter-spacing: 0.15em;
+      }
+
+      h2:first-of-type {
+        margin-top: 6px;
+      }
+
+      h3 {
+        font-size: 11pt;
+        margin-bottom: 2px;
+        margin-top: 0;
+      }
+
+      .title {
+        font-size: 10pt;
+        letter-spacing: 0.12em;
+        margin-top: 4px;
+        margin-bottom: 2px;
+      }
+
+      .subtitle {
+        font-size: 9pt;
+        margin-bottom: 4px;
+      }
+
+      .contact {
+        font-size: 8.5pt;
+        line-height: 1.35;
+      }
+
+      section {
+        margin-top: 4px;
+        page-break-inside: avoid;
+      }
+
+      .role,
+      .project {
+        margin-bottom: 3px;
+        page-break-inside: avoid;
+      }
+
+      .skills p {
+        grid-template-columns: 90px 1fr;
+        gap: 6px;
+        margin-bottom: 2px;
+      }
+
+      ul {
+        margin: 2px 0 0 14px;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 1.5px;
+        padding-left: 1px;
+        line-height: 1.32;
+      }
+
+      .identity {
+        margin-bottom: 6px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid var(--accent);
+      }
+
+      .role-head {
+        margin-bottom: 1px;
+        gap: 12px;
+      }
+
+      .lead {
+        margin-bottom: 3px;
+      }
+    }
+
+    @media screen {
+      body {
+        background: var(--page);
+        padding: 12px;
+      }
+
+      .resume {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .resume {
+      width: 100%;
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 8mm 6mm 0mm;
+      background: var(--paper);
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* —— Header —— */
+    .identity {
+      text-align: center;
+      margin-bottom: 4px;
+      padding-bottom: 6px;
+      border-bottom: 2.5px solid var(--accent);
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      font-size: 32pt;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+      color: var(--accent);
+      margin-bottom: 0px;
+    }
+
+    .title {
+      font-size: 12pt;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-top: 2px;
+      margin-bottom: 1px;
+    }
+
+    .subtitle {
+      font-size: 10pt;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 3px;
+      letter-spacing: 0.02em;
+    }
+
+    .contact {
+      font-size: 9.5pt;
+      color: var(--muted);
+      line-height: 1.42;
+    }
+
+    .contact.links {
+      margin-top: 0px;
+    }
+
+    .dot {
+      margin: 0 6px;
+      color: var(--line);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* —— Sections —— */
+    section {
+      margin-top: 6px;
+    }
+
+    section:first-of-type {
+      margin-top: 4px;
+    }
+
+    h2 {
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+      margin-top: 4px;
+      padding: 2px 0 3px 10px;
+      border-left: 3px solid var(--accent);
+      background: linear-gradient(90deg, var(--accent-soft) 0%, transparent 70%);
+    }
+
+    h3 {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 1px;
+    }
+
+    .lead {
+      text-align: justify;
+      color: var(--ink);
+      margin-bottom: 2px;
+      line-height: 1.45;
+    }
+
+    /* —— Skills —— */
+    .skills p {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 8px;
+      margin-bottom: 1px;
+      align-items: baseline;
+    }
+
+    .skills .label {
+      font-weight: 700;
+      font-size: 9.5pt;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    /* —— Experience / Projects —— */
+    .role,
+    .project {
+      margin-bottom: 4px;
+    }
+
+    .role:last-child,
+    .project:last-child {
+      margin-bottom: 0;
+    }
+
+    .role-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 1px;
+      flex-wrap: wrap;
+    }
+
+    .org {
+      font-size: 10pt;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 1px;
+    }
+
+    .dates,
+    .dates-inline {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .dates-inline {
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 1px;
+    }
+
+    .tag {
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+      border: 1px solid var(--line);
+      padding: 2px 8px;
+      border-radius: 2px;
+      background: var(--accent-soft);
+      display: inline-block;
+    }
+
+    .meta {
+      font-size: 9pt;
+      color: var(--muted);
+      font-style: italic;
+      margin: 1px 0 1px;
+    }
+
+    .project p:last-child {
+      text-align: justify;
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    ul {
+      margin: 2px 0 0 16px;
+      padding: 0;
+      list-style-type: disc;
+    }
+
+    li {
+      margin-bottom: 1px;
+      padding-left: 0;
+      text-align: justify;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+
+    li::marker {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* —— Education / Additional —— */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .split h2 {
+      margin-bottom: 6px;
+    }
+
+    .split ul {
+      margin-top: 4px;
+    }
+
+    .split li {
+      text-align: left;
+    }
+
+    /* —— Print —— */
+    @media print {
+      html, body {
+        font-size: 10.5pt;
+        line-height: 1.45;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .resume {
+        width: 100%;
+        max-width: none;
+        padding: 8mm 6mm 0mm;
+        margin: 0;
+        box-shadow: none;
+      }
+
+      h1 {
+        font-size: 28pt;
+        margin-bottom: 0px;
+      }
+
+      h2 {
+        font-size: 10pt;
+        margin-bottom: 4px;
+        margin-top: 5px;
+        padding: 2px 0 3px 10px;
+      }
+
+      h3 {
+        font-size: 11pt;
+        margin-bottom: 1px;
+      }
+
+      .title {
+        font-size: 11pt;
+        margin-top: 2px;
+        margin-bottom: 1px;
+      }
+
+      .subtitle {
+        font-size: 9.5pt;
+        margin-bottom: 2px;
+      }
+
+      .contact {
+        font-size: 9pt;
+        line-height: 1.38;
+      }
+
+      section {
+        margin-top: 4px;
+        page-break-inside: avoid;
+      }
+
+      .role,
+      .project {
+        margin-bottom: 3px;
+        page-break-inside: avoid;
+      }
+
+      .skills p {
+        grid-template-columns: 110px 1fr;
+        gap: 8px;
+        margin-bottom: 1px;
+      }
+
+      ul {
+        margin: 2px 0 0 16px;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 1px;
+        line-height: 1.35;
+      }
+
+      .identity {
+        margin-bottom: 4px;
+        padding-bottom: 6px;
+        border-bottom: 2.5px solid var(--accent);
+      }
+
+      .lead {
+        line-height: 1.42;
+        margin-bottom: 1px;
+      }
+
+      .meta {
+        margin: 1px 0 1px;
+        font-size: 9pt;
+      }
+
+      .tag {
+        font-size: 8pt;
+        padding: 2px 8px;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      h2 {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+
+    /* —— Screen preview —— */
+    @media screen {
+      body {
+        background:
+          radial-gradient(ellipse at top, #eef1f5 0%, var(--page) 55%);
+        padding: 28px 14px 56px;
+      }
+
+      .resume {
+        box-shadow:
+          0 1px 2px rgba(18, 24, 32, 0.04),
+          0 12px 40px rgba(18, 24, 32, 0.1);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      html, body {
+        font-size: 11pt;
+      }
+
+      .resume {
+        width: 95%;
+        padding: 8px 6px 6px;
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 24pt;
+      }
+
+      .title {
+        font-size: 10pt;
+      }
+
+      .subtitle {
+        font-size: 9pt;
+      }
+
+      .contact {
+        font-size: 8.5pt;
+      }
+    }
+
+    @media (max-width: 768px) {
+      html, body {
+        font-size: 10.5pt;
+        line-height: 1.4;
+      }
+
+      .resume {
+        width: 100%;
+        padding: 6px 4px 4px;
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 22pt;
+        margin-bottom: 1px;
+      }
+
+      h2 {
+        font-size: 9.5pt;
+        margin-bottom: 5px;
+        margin-top: 7px;
+      }
+
+      h3 {
+        font-size: 10.5pt;
+        margin-bottom: 2px;
+      }
+
+      .title {
+        font-size: 9.5pt;
+        margin-top: 4px;
+        margin-bottom: 2px;
+      }
+
+      .subtitle {
+        font-size: 9pt;
+        margin-bottom: 4px;
+      }
+
+      .contact {
+        font-size: 8.5pt;
+        line-height: 1.35;
+      }
+
+      .skills p {
+        grid-template-columns: 100px 1fr;
+        gap: 6px;
+        margin-bottom: 2px;
+      }
+
+      .role-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1px;
+        margin-bottom: 1px;
+      }
+
+      .role,
+      .project {
+        margin-bottom: 6px;
+      }
+
+      .split {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      ul {
+        margin: 2px 0 0 14px;
+      }
+
+      li {
+        margin-bottom: 1.5px;
+        line-height: 1.34;
+      }
+
+      section {
+        margin-top: 6px;
+      }
+
+      .identity {
+        margin-bottom: 6px;
+        padding-bottom: 6px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      html, body {
+        font-size: 9.5pt;
+        line-height: 1.35;
+      }
+
+      .resume {
+        width: 100%;
+        padding: 4px 2px 2px;
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 19pt;
+        margin-bottom: 1px;
+        letter-spacing: 0.02em;
+      }
+
+      h2 {
+        font-size: 9pt;
+        margin-bottom: 4px;
+        margin-top: 5px;
+        padding: 1.5px 0 2px 6px;
+        border-left: 2px solid var(--accent);
+      }
+
+      h3 {
+        font-size: 10pt;
+        margin-bottom: 1px;
+      }
+
+      .title {
+        font-size: 8.5pt;
+        letter-spacing: 0.1em;
+        margin-top: 3px;
+        margin-bottom: 1px;
+      }
+
+      .subtitle {
+        font-size: 8pt;
+        margin-bottom: 3px;
+      }
+
+      .contact {
+        font-size: 7.5pt;
+        line-height: 1.3;
+      }
+
+      .identity {
+        margin-bottom: 5px;
+        padding-bottom: 4px;
+        border-bottom: 1.5px solid var(--accent);
+      }
+
+      .skills p {
+        grid-template-columns: 80px 1fr;
+        gap: 4px;
+        margin-bottom: 1px;
+      }
+
+      .skills .label {
+        font-size: 8.5pt;
+      }
+
+      .role-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5px;
+        margin-bottom: 0.5px;
+      }
+
+      .dates {
+        font-size: 8pt;
+      }
+
+      .role,
+      .project {
+        margin-bottom: 4px;
+      }
+
+      .split {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      ul {
+        margin: 1px 0 0 12px;
+      }
+
+      li {
+        margin-bottom: 1px;
+        line-height: 1.3;
+        font-size: 9pt;
+      }
+
+      section {
+        margin-top: 4px;
+      }
+
+      .tag {
+        font-size: 7.5pt;
+        padding: 1px 6px;
+      }
+
+      .meta {
+        font-size: 8pt;
+        margin: 1px 0 1px;
+      }
+
+      .lead {
+        font-size: 9.5pt;
+        margin-bottom: 2px;
+      }
+    }
+  </style>
 </head>
 
 <body>
   <div class="resume">
-    <header>
+    <header class="identity">
       <h1>Niraj Rai</h1>
-      <p>Senior React Native Mobile Engineer | React Native | TypeScript | Android | iOS</p>
-      <p>Mohali, Punjab, India · +91 74819 55476 · nirajraibxr657@gmail.com</p>
-      <p>
-        <a href="https://github.com/nirajraiy" target="_blank">GitHub</a> |
-        <a href="https://www.linkedin.com/in/niraj-rai-03a5b4181/" target="_blank">LinkedIn</a> |
-        <a href="https://portfolioweb-phi-one.vercel.app/" target="_blank">Portfolio</a>
+      <p class="title">React Native Developer</p>
+      <p class="subtitle">React Native &nbsp;·&nbsp; React.js &nbsp;·&nbsp; Next.js &nbsp;·&nbsp; TypeScript &nbsp;·&nbsp; Vite</p>
+      <p class="contact">
+        Mohali, Punjab, India
+        <span class="dot">·</span>
+        +91 74819 55476
+        <span class="dot">·</span>
+        <a href="mailto:nirajraibxr657@gmail.com">nirajraibxr657@gmail.com</a>
       </p>
-      <p>Nationality: Indian · Current Location: Mohali, India · Willing to Relocate</p>
+      <p class="contact links">
+        <a href="https://www.linkedin.com/in/niraj-rai-03a5b4181/" target="_blank" rel="noopener">LinkedIn</a>
+        <span class="dot">·</span>
+        <a href="https://github.com/nirajraiy" target="_blank" rel="noopener">GitHub</a>
+        <span class="dot">·</span>
+        <a href="https://portfolioweb-phi-one.vercel.app/" target="_blank" rel="noopener">Portfolio</a>
+        <span class="dot">·</span>
+        Open to relocation
+      </p>
     </header>
 
     <section>
-      <h2>Summary</h2>
-      <p>
-        Senior React Native Mobile Engineer with 3+ years of experience building scalable Android and iOS applications using React Native, TypeScript, JavaScript, Kotlin, and Swift. Delivered 12+ production mobile applications across healthcare, restaurant management, appointment booking, and customer experience platforms serving over 20,000 active users. Strong expertise in mobile architecture, performance optimization, state management (RTK Query / React Query / Redux Toolkit), TurboModules, Fabric Architecture, Native Modules (Kotlin/Swift), RESTful APIs, Firebase, CI/CD Orchestration (Fastlane / Bitrise), App Store and Play Store deployment, MVVM, Clean Architecture, SOLID Principles, and release management.
+      <h2>Professional Summary</h2>
+      <p class="lead">
+        React Native Developer with 3+ years building and shipping production Android, iOS, and web products end to end. Sole technical owner of Qwaiting, Spark Resto, and Smart Review — from architecture and delivery through App Store / Play Store releases and ongoing maintenance. Delivered 12 production mobile applications serving 20,000+ active users, with strong depth in TypeScript, mobile architecture, native modules (Kotlin / Swift), performance optimization, CI/CD, and React.js / Next.js / Vite web clients.
       </p>
     </section>
 
     <section>
-      <h2>Technical Skills</h2>
-      <ul class="skills">
-        <li><strong>Languages:</strong> TypeScript, JavaScript, Java, Kotlin, Swift</li>
-        <li><strong>Mobile Frameworks:</strong> React Native, React Hooks, Reanimated, Gesture Handler, React Navigation</li>
-        <li><strong>State Management:</strong> Redux Toolkit, RTK Query, React Query, Context API, Zustand</li>
-        <li><strong>Architecture & Patterns:</strong> MVVM, Clean Architecture, SOLID Principles, Design Patterns, Dependency Injection, TurboModules, Fabric Architecture, Native Modules (Kotlin/Swift)</li>
-        <li><strong>Platform & Native:</strong> Android Studio, Xcode, CocoaPods, Gradle, Hermes, Metro</li>
-        <li><strong>APIs & Integration:</strong> RESTful APIs, API Integration, OAuth, JWT, Firebase Messaging, Push Notifications, Google Maps, Deep Linking, Socket.IO, WebSocket</li>
-        <li><strong>Data & Storage:</strong> AsyncStorage, Secure Storage, SQLite, Realm, Offline Storage</li>
-        <li><strong>DevOps & Deployment:</strong> CI/CD, CI/CD Orchestration, Bitrise, Fastlane, GitHub Actions, Azure DevOps, App Store Deployment, Play Store Deployment</li>
-        <li><strong>Testing & Quality:</strong> Jest, Detox, Unit Testing, Integration Testing, Crashlytics, Performance Monitoring, Accessibility</li>
-        <li><strong>AI & Delivery:</strong> Cursor, AI Agents, Copilot-assisted development, rapid prototyping, accelerated feature delivery</li>
-        <li><strong>Collaboration & Process:</strong> Agile, Scrum, Jira, Git, GitHub, Remote Team, Cross-functional Team, Product Lifecycle, SDLC</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Experience</h2>
-
-      <div class="job">
-        <h3>Senior React Native Developer</h3>
-        <p>Jan 2024 – Present | Stellen Infotech | Mohali, IN</p>
-        <ul>
-          <li>Architected and shipped enterprise-grade React Native applications using TypeScript, Redux Toolkit, MVVM, and Clean Architecture for salon, queue management, and service booking platforms.</li>
-          <li>Delivered 6 white-label Android/iOS apps to 20K+ active users, reducing time-to-market by 40% through reusable core modules, shared UI components, and AI-assisted delivery workflows.</li>
-          <li>Integrated Firebase Messaging, Push Notifications, Google Maps, Deep Linking, and offline storage with SQLite/Realm, improving engagement and resilience in low-connectivity environments.</li>
-          <li>Built CI/CD pipelines with Bitrise, Fastlane, GitHub Actions, and EAS Build to automate testing and deployment, shortening releases to a biweekly cadence.</li>
-          <li>Reduced bundle size by 50%, improved app startup by 35%, and maintained 99.7% crash-free sessions using Hermes, Metro optimizations, and performance profiling.</li>
-        </ul>
-      </div>
-
-      <div class="job">
-        <h3>React Native Trainee</h3>
-        <p>April 2023 – September 2023 | Dev Technosys Pvt Ltd | Malviya Nagar, Jaipur, IN</p>
-        <ul>
-          <li>Delivered independent React Native modules for REST API integration, navigation, and state management, taking ownership of feature implementation from development to QA.</li>
-          <li>Implemented responsive UI, offline support, and authentication flows using OAuth and JWT, improving app usability and reliability.</li>
-          <li>Worked in an Agile team with Jira tracking, sprint planning, and peer code reviews while contributing end-to-end module delivery.</li>
-        </ul>
-      </div>
-      <div class="job">
-        <h3>Associate Software Engineer Trainee</h3>
-        <p>Nov 2022 – March 2023 | HabileLabs Private Limited | Mansarovar, Jaipur, IN</p>
-        <ul>
-          <li>Built project-based web solutions using HTML, CSS, JavaScript, React.js, Node.js, and REST APIs, gaining strong ownership of feature delivery.</li>
-          <li>Applied SDLC principles, version control, and technical documentation while collaborating in Agile sprints and solution development.</li>
-        </ul>
+      <h2>Core Competencies</h2>
+      <div class="skills">
+        <p><span class="label">Languages</span> TypeScript, JavaScript, Kotlin, Swift, Java, HTML5, CSS3</p>
+        <p><span class="label">Mobile</span> React Native, Android, iOS, React Navigation, Reanimated, Hermes, EAS Build, Native Modules</p>
+        <p><span class="label">Web</span> React.js, Next.js, Vite, Tailwind CSS, responsive UI, frontend architecture</p>
+        <p><span class="label">State & Data</span> Redux Toolkit, RTK Query, React Query, Zustand, SQLite, Realm, AsyncStorage</p>
+        <p><span class="label">Architecture</span> MVVM, Clean Architecture, SOLID, TurboModules, Fabric</p>
+        <p><span class="label">APIs & Cloud</span> REST APIs, OAuth, JWT, Firebase, FCM, Pusher, WebSocket, Google Maps, Deep Linking</p>
+        <p><span class="label">Delivery</span> CI/CD, Fastlane, Bitrise, GitHub Actions, EAS Build, Jest, Detox, App Store, Google Play, Agile</p>
       </div>
     </section>
 
     <section>
-      <h2>Education</h2>
-      <p>
-        <strong>B.Tech. in Computer Science</strong> – Arya College (2019 –
-        2023)
-      </p>
-    </section>
+      <h2>Professional Experience</h2>
 
-    <section>
-      <h2>Professional Skills</h2>
-      <ul>
-        <li>Mobile Architecture</li>
-        <li>Performance Optimization</li>
-        <li>API Integration</li>
-        <li>Agile Development</li>
-        <li>Team Collaboration</li>
-        <li>Client Communication</li>
-        <li>Code Review</li>
-        <li>Mentoring</li>
-        <li>Technical Documentation</li>
-        <li>Release Management</li>
-        <li>Production Support</li>
-        <li>Mobile Security</li>
-      </ul>
-    </section>
-
-    <!-- <section>
-        <h2>Projects</h2>
+      <article class="role">
+        <div class="role-head">
+          <div>
+            <h3>React Native Developer</h3>
+            <p class="org">Stellen Infotech &nbsp;·&nbsp; Mohali, India</p>
+          </div>
+          <p class="dates">Jan 2024 — Present</p>
+        </div>
         <ul>
-          <li>
-            <strong>Product Suite: Salonist, Shrivra, and Qwaiting</strong> – Developed and maintained cross-platform mobile apps powering key SaaS platforms:
-            <ul>
-                <li><strong>Salonist Apps:</strong> Keljhani, HairLuxury, IstilongPinoy, BaylenDeLouis – White-labeled salon booking apps offering appointment scheduling, customer engagement, and real-time staff coordination.</li>
-                <li><strong>Salonist Check-In App:</strong> Built for salon staff to efficiently manage and book pre-scheduled or walk-in appointments.</li>
-                <li><strong>Smart Review App:</strong> Enabled live customer feedback and rating collection to enhance service quality.</li>
-                <li><strong>Spark Resto App:</strong> Restaurant table and reservation management solution with real-time tracking.</li>
-                <li><strong>Qwaiting App:</strong> Queue management system for service-based businesses, reducing wait times and optimizing customer flow.</li>
-                <li>All apps are deployed live on the Google Play Store and Apple App Store.</li>
-            </ul>
-        </li>
-         
+          <li>Sole owner of the Qwaiting suite (Staff, Customer, Display TV): architecture, development, store releases, production support, and continuous maintenance across Android and iOS platforms.</li>
+          <li>Sole owner of Spark Resto and Smart Review — built both products from scratch and remain accountable for features, releases, and day-to-day ownership. Increased review completion by 25% with optimized NPS collection flows.</li>
+          <li>Shipped 6 white-label React Native apps in TypeScript (Redux Toolkit, MVVM, Clean Architecture) to 20,000+ users; cut time-to-market by ~40% via reusable modules and shared UI component library.</li>
+          <li>Delivered companion web / admin surfaces in React.js, Next.js, and Vite with shared TypeScript contracts and API interfaces across mobile and web platforms for seamless integration.</li>
+          <li>Owned full CI/CD pipeline with Bitrise, Fastlane, GitHub Actions, and EAS Build; automated testing and deployment, moving release cadence from monthly to biweekly with 99.7% crash-free sessions.</li>
+          <li>Cut JS bundle size by 50% and improved app startup by 35% through Hermes optimization, Metro bundler tuning, and native module integration (Kotlin / Swift).</li>
         </ul>
-       
-      </section> -->
-    <section>
-      <h2>Projects</h2>
-      <ul>
-        <li><strong>Qwaiting Staff</strong> (Role: React Native Developer | Stack: React Native, TypeScript, Redux Toolkit, REST API, Firebase, Pusher) — Built a real-time queue management app for service centers, cutting average wait times by 35% and improving staff efficiency in high-traffic environments.</li>
-        <li><strong>Qwaiting Display TV</strong> (Role: Mobile Engineer | Stack: Swift, REST API, Pusher) — Developed a TV display solution for live queue status and missed-token alerts, improving on-site visibility and reducing customer confusion.</li>
-        <li><strong>Qwaiting Customer</strong> (Role: React Native Developer | Stack: React Native, TypeScript, REST API, Universal Printer) — Delivered a customer-facing queue experience with ticket booking, instant notifications, and printing, streamlining service flow and reducing front-desk effort.</li>
-        <li><strong>Spark Resto</strong> (Role: Mobile Engineer | Stack: React Native, JavaScript, SQLite, Universal Printer, REST API) — Engineered an offline-first POS app using React Native and SQLite, ensuring zero downtime during network outages and boosting order processing speed.</li>
-        <li><strong>AddPeople</strong> (Role: React Native Engineer | Stack: React Native, TypeScript, REST API, Firebase) — Created doctor scheduling and camp management software that reduced manual coordination effort and accelerated appointment workflows.</li>
-        <li><strong>Smart Review & NPS App</strong> (Role: React Native Developer | Stack: React Native, Firebase Analytics, Push Notifications, REST API) — Delivered a customer feedback platform that increased review completion by 25% and strengthened feedback-driven decision making.</li>
-        <li><strong>Portfolio Website</strong> (Role: Frontend Developer | Stack: Next.js, TypeScript, Vercel) — Built an interactive portfolio site that improved online visibility and streamlined resume and contact discovery.</li>
-      </ul>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <div>
+            <h3>React Native Developer (Trainee)</h3>
+            <p class="org">Dev Technosys Pvt. Ltd. &nbsp;·&nbsp; Jaipur, India</p>
+          </div>
+          <p class="dates">Apr 2023 — Sep 2023</p>
+        </div>
+        <ul>
+          <li>Owned React Native feature modules spanning REST APIs, navigation flows, and state management through development and QA cycles with full accountability.</li>
+          <li>Implemented OAuth / JWT authentication, responsive UI layouts, and offline-capable flows for reliable sessions across various network conditions.</li>
+          <li>Delivered in Agile / Scrum environment with Jira tracking, sprint planning, Git version control, and peer code review practices.</li>
+        </ul>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <div>
+            <h3>Associate Software Engineer (Trainee)</h3>
+            <p class="org">HabileLabs Private Limited &nbsp;·&nbsp; Jaipur, India</p>
+          </div>
+          <p class="dates">Nov 2022 — Mar 2023</p>
+        </div>
+        <ul>
+          <li>Built web features with HTML, CSS, JavaScript, React.js, Vite, Next.js, Node.js, and REST APIs in full-stack projects.</li>
+          <li>Practiced SDLC principles, Git version control, technical documentation, and Agile sprint methodologies in cross-functional teams.</li>
+        </ul>
+      </article>
     </section>
 
-
     <section>
-      <h2>Awards & Achievements</h2>
-      <ul>
-        <li>Built and shipped 12+ production mobile applications across healthcare, restaurant management, appointment booking, and customer experience domains.</li>
-        <li>Served 20K+ active users with 99.7% crash-free sessions and 35% faster app startup.</li>
-        <li>Improved release cycle from monthly to biweekly using CI/CD automation, code review, and deployment orchestration.</li>
-        <li>Reduced bundle size by 50% and boosted performance with Hermes, Metro, and image optimization.</li>
-        <li>Solved 1000+ algorithm and data structure problems on LeetCode and GeeksforGeeks.</li>
-      </ul>
+      <h2>Selected Projects</h2>
+
+      <article class="project">
+        <div class="role-head">
+          <h3>Qwaiting — Staff, Customer & Display TV</h3>
+          <p class="tag">Sole Owner</p>
+        </div>
+        <p class="meta">React Native · TypeScript · Redux Toolkit · Firebase · Pusher · Swift · Kotlin</p>
+        <p>End-to-end ownership of the queue-management suite for service centres. Built three interconnected apps: Staff app for queue handling, Customer app for queue joining with real-time notifications, and Display TV app for live status. Reduced average wait time by 35% with real-time token updates and missed-token alerts using Pusher. Integrated with multiple printer types (Universal Printer, iMini Printer). Live on App Store and Google Play serving 20,000+ active users.</p>
+      </article>
+
+      <article class="project">
+        <div class="role-head">
+          <h3>Spark Resto</h3>
+          <p class="tag">Sole Owner</p>
+        </div>
+        <p class="meta">React Native · JavaScript · SQLite · REST API · Universal Printer · Offline-First</p>
+        <p>Built and maintain the offline-first restaurant POS system for table management, reservations, order taking, and bill printing. Implemented SQLite-based local persistence ensuring order flow continues seamlessly during network outages with automatic synchronization on reconnection. Designed for full-service restaurants and food establishments with real-time kitchen communication. Live on App Store and Google Play.</p>
+      </article>
+
+      <article class="project">
+        <div class="role-head">
+          <h3>Smart Review & NPS App</h3>
+          <p class="tag">Sole Owner</p>
+        </div>
+        <p class="meta">React Native · TypeScript · Firebase · Push Notifications · REST API</p>
+        <p>An in-venue feedback and NPS collection platform for service centers. Enables businesses to collect customer feedback in real-time, track NPS scores, and drive actionable improvements. Increased review completion by 25% with optimized user flows. Features custom ratings, multi-channel feedback, team collaboration tools, and detailed analytics for service quality enhancement. Live on App Store and Google Play.</p>
+      </article>
+
+      <article class="project">
+        <div class="role-head">
+          <h3>AddPeople</h3>
+          <p class="tag">Sole Owner</p>
+        </div>
+        <p class="meta">React Native · TypeScript · Firebase · REST API</p>
+        <p>Doctor scheduling and medical-camp management platform that reduces manual coordination and speeds up appointment workflows. Enables healthcare organizations to assign doctors to medical camps, track attendance, manage schedules, and handle camp finances. Features comprehensive reporting and efficient field team coordination. Live on App Store and Google Play.</p>
+      </article>
+    </section>
+
+    <section class="split">
+      <div>
+        <h2>Education</h2>
+        <h3>B.Tech. Computer Science</h3>
+        <p class="org">Arya College of Engineering & Research Centre</p>
+        <p class="dates-inline">Jaipur, India &nbsp;·&nbsp; 2019 — 2023</p>
+      </div>
+      <div>
+        <h2>Additional</h2>
+        <ul>
+          <li>1,000+ DSA problems solved on LeetCode and GeeksforGeeks</li>
+          <li>12 production apps live on App Store and Google Play</li>
+          <li>99.7% crash-free sessions maintained across all production apps</li>
+          <li>20,000+ active users across product portfolio</li>
+        </ul>
+      </div>
     </section>
   </div>
-  <script>
-    window.onload = function () {
-      window.print();
-    };
-  </script>
-
 </body>
 
 </html>
