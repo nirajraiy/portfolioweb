@@ -20,7 +20,7 @@ const Footer = () => {
             <FaGithub className="icon github" size={20} />
           </a>
           <a
-            href="https://www.linkedin.com/in/niraj-rai-03a5b4181/"
+            href="https://www.linkedin.com/in/nirajrai7/"
             aria-label="LinkedIn"
             target="_blank"
             rel="noopener noreferrer"

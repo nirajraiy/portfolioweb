@@ -142,7 +142,7 @@ export default function Navbar() {
             <FaGithub />
           </motion.a>
           <motion.a 
-            href="https://www.linkedin.com/in/niraj-rai-03a5b4181/" 
+            href="https://www.linkedin.com/in/nirajrai7/" 
             target="_blank" 
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1, rotate: -5 }}
@@ -271,7 +271,7 @@ export default function Navbar() {
                       <FaGithub />
                     </motion.a>
                     <motion.a 
-                      href="https://www.linkedin.com/in/niraj-rai-03a5b4181/" 
+                      href="https://www.linkedin.com/in/nirajrai7/" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, rotate: -5 }}
