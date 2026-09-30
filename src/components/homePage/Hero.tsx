@@ -12,7 +12,7 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 export default function Hero() {
   const router = useRouter();
@@ -22,15 +22,6 @@ export default function Hero() {
 
   const heroRef = useRef<HTMLElement>(null);
   const isInView = useInView(heroRef, { once: true });
-
-  // Prevent Hero from fading out on scroll (opacity stays 1)
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.95], [1, 1]); // stays visible
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -58,7 +49,6 @@ export default function Hero() {
     <motion.section
       ref={heroRef}
       className={styles.hero}
-      style={{ y, opacity }}
     >
       {/* Animated Background Elements */}
       <div className={styles.backgroundElements}>
