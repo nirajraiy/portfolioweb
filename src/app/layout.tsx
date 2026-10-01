@@ -36,6 +36,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Niraj Rai', url: siteUrl }],
   creator: 'Niraj Rai',
   publisher: 'Niraj Rai',
+  verification: {
+    google: 'CgFoQW3tmj4q4x5nMDfx4ahOkukqImyC5yV_UF-1-O8',
+  },
   formatDetection: {
     email: false,
     address: false,
