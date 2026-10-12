@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaUser, FaGlobe, FaComment } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaUser, FaGlobe, FaComment, FaLinkedin, FaGithub } from "react-icons/fa";
 import "./styles.css";
 import CommonLoader from "@/components/constants/CommonLoader";
 
@@ -191,9 +191,21 @@ export default function ContactClient() {
       link: "tel:+917481955476",
     },
     {
+      icon: <FaLinkedin />,
+      title: "LinkedIn",
+      value: "linkedin.com/in/nirajrai7",
+      link: "https://www.linkedin.com/in/nirajrai7/",
+    },
+    {
+      icon: <FaGithub />,
+      title: "GitHub",
+      value: "github.com/nirajraiy",
+      link: "https://github.com/nirajraiy",
+    },
+    {
       icon: <FaMapMarkerAlt />,
       title: "Location",
-      value: "Mohali, Punjab, India",
+      value: "Mohali, Punjab, India · Open to relocation",
       link: null,
     },
   ];
@@ -206,10 +218,16 @@ export default function ContactClient() {
         initial="hidden"
         animate="visible"
       >
-        <motion.div className="contactHeader" variants={itemVariants}>
-          <h1>Hire React Native & Mobile Application Developer</h1>
-          <p>Ready to build or scale your mobile application? Let&apos;s discuss your project!</p>
-        </motion.div>
+        <motion.header className="section-head" variants={itemVariants}>
+          <span className="eyebrow">Contact</span>
+          <h1 className="section-title">
+            Let&apos;s build your <span className="accent">next app</span> together
+          </h1>
+          <p className="section-subtitle">
+            Hiring a React Native developer or planning a mobile product? Send a message and I&apos;ll get back
+            to you soon.
+          </p>
+        </motion.header>
 
         <div className="contactContent">
           <motion.div className="contactInfo" variants={itemVariants}>
@@ -226,7 +244,11 @@ export default function ContactClient() {
                   <div className="infoContent">
                     <h3>{info.title}</h3>
                     {info.link ? (
-                      <a href={info.link} target={info.title === "Email" ? "_blank" : "_self"}>
+                      <a
+                        href={info.link}
+                        target={info.link.startsWith("http") ? "_blank" : "_self"}
+                        rel="noopener noreferrer"
+                      >
                         {info.value}
                       </a>
                     ) : (

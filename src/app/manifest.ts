@@ -2,14 +2,15 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Niraj Rai | React Native & Mobile Application Developer',
+    name: 'Niraj Rai — React Native Developer',
     short_name: 'Niraj Rai',
     description:
-      'Portfolio of Niraj Rai - React Native & Mobile Application Developer with 3+ years experience building iOS, Android, and cross-platform mobile apps.',
+      'Portfolio of Niraj Rai, React Native developer building iOS and Android apps with React Native, TypeScript, Kotlin and Swift.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#0d0d1a',
-    theme_color: '#ffa500',
+    background_color: '#07080b',
+    theme_color: '#07080b',
+    categories: ['portfolio', 'developer', 'technology'],
     icons: [
       {
         src: '/favicon.ico',

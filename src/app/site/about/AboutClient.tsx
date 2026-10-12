@@ -1,164 +1,187 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaDownload, FaCode, FaMobile, FaRocket } from "react-icons/fa";
+import Link from "next/link";
+import {
+  FaDownload,
+  FaArrowRight,
+  FaMapMarkerAlt,
+  FaGraduationCap,
+  FaBriefcase,
+  FaLayerGroup,
+  FaBolt,
+  FaShieldAlt,
+  FaUsers,
+  FaCodeBranch,
+} from "react-icons/fa";
 import styles from "./AboutSection.module.css";
+import { openResume } from "@/lib/resume";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+};
+
+const facts = [
+  { icon: <FaBriefcase />, label: "Current role", value: "React Native Developer, Stellen Infotech" },
+  { icon: <FaMapMarkerAlt />, label: "Based in", value: "Mohali, Punjab · Open to relocation" },
+  { icon: <FaGraduationCap />, label: "Education", value: "B.Tech Computer Science, 2023" },
+];
+
+const principles = [
+  {
+    icon: <FaLayerGroup />,
+    title: "Architecture first",
+    text: "MVVM, Clean Architecture and shared TypeScript contracts keep codebases easy to grow — six white-label apps share one core.",
+  },
+  {
+    icon: <FaBolt />,
+    title: "Performance obsessed",
+    text: "Hermes, Metro tuning and native modules cut JS bundle size by 50% and app startup time by 35%.",
+  },
+  {
+    icon: <FaShieldAlt />,
+    title: "Built for production",
+    text: "Offline-first data, crash monitoring and automated testing keep apps at 99.7% crash-free sessions.",
+  },
+  {
+    icon: <FaCodeBranch />,
+    title: "Ship continuously",
+    text: "CI/CD with Bitrise, Fastlane, GitHub Actions and EAS moved releases from monthly to every two weeks.",
+  },
+  {
+    icon: <FaUsers />,
+    title: "Ownership mindset",
+    text: "Sole owner of Qwaiting, Spark Resto and Smart Reviews — from first commit to store release and support.",
+  },
+];
+
+const journey = [
+  { year: "2024 – Now", title: "React Native Developer", org: "Stellen Infotech" },
+  { year: "2023", title: "React Native Developer (Trainee)", org: "Dev Technosys" },
+  { year: "2022 – 23", title: "Associate Software Engineer (Trainee)", org: "HabileLabs" },
+  { year: "2019 – 23", title: "B.Tech, Computer Science", org: "Arya College of Engineering" },
+];
 
 export default function AboutClient() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut" as const,
-      },
-    },
-  };
-
-  const skills = [
-    {
-      icon: <FaCode />,
-      title: "React Native & Mobile Specialist",
-      description: "3+ years shipping production mobile apps with 20K+ active users. Expert in TypeScript, MVVM, and Clean Architecture",
-    },
-    {
-      icon: <FaMobile />,
-      title: "Native iOS & Android Development",
-      description: "Android (Kotlin/Jetpack) & iOS (Swift/SwiftUI) development with performance optimization and native modules",
-    },
-    {
-      icon: <FaRocket />,
-      title: "Full-Stack Solutions",
-      description: "React.js, Next.js, Vite web applications with shared TypeScript contracts across mobile and web",
-    },
-    {
-      icon: <FaMobile />,
-      title: "Scalable Architecture",
-      description: "MVVM pattern, Clean Architecture, SOLID principles, and TurboModules for high-performance apps",
-    },
-    {
-      icon: <FaCode />,
-      title: "CI/CD & DevOps",
-      description: "Bitrise, Fastlane, GitHub Actions, EAS Build. Reduced release cadence from monthly to biweekly",
-    },
-    {
-      icon: <FaRocket />,
-      title: "App Store Mastery",
-      description: "12 production apps shipped to App Store & Google Play. 99.7% crash-free sessions, 50% bundle size reduction",
-    },
-  ];
-
   return (
-    <section className={styles.about}>
-      <motion.div
-        className={styles.container}
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Left: Profile Image */}
-        <motion.div className={styles.imageWrapper} variants={itemVariants}>
-          <div className={styles.imageContainer}>
-            <Image
-              src="/nirajImage.png"
-              alt="Niraj Rai - React Native & Mobile Application Developer"
-              width={350}
-              height={400}
-              className={styles.image}
-              priority
-            />
-            <motion.div
-              className={styles.floatingBadge}
-              animate={{
-                y: [0, -10, 0],
-                rotate: [0, 5, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <FaCode />
-              <span>Developer</span>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Right: Info */}
-        <motion.div className={styles.info} variants={itemVariants}>
-          <motion.div className={styles.badge} variants={itemVariants}>
-            <span>React Native & Mobile Application Developer • 3+ Years Experience</span>
+    <section className={`page-shell ${styles.about}`}>
+      <div className="page-inner">
+        <div className={styles.hero}>
+          <motion.div className={styles.photoCol} variants={fadeUp} initial="hidden" animate="visible">
+            <div className={styles.photo}>
+              <Image
+                src="/nirajImage.png"
+                alt="Niraj Rai - React Native & Mobile Application Developer"
+                fill
+                priority
+                sizes="(max-width: 900px) 80vw, 380px"
+                style={{ objectFit: "cover", objectPosition: "center 18%" }}
+              />
+            </div>
+            <div className={styles.facts}>
+              {facts.map((f) => (
+                <div key={f.label} className={styles.fact}>
+                  <span className={styles.factIcon}>{f.icon}</span>
+                  <div>
+                    <small>{f.label}</small>
+                    <p>{f.value}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </motion.div>
 
-          <h1 className={styles.title}>About Me - Niraj Rai</h1>
+          <motion.div
+            className={styles.story}
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.15 }}
+          >
+            <span className="eyebrow">About me</span>
+            <h1 className="section-title">
+              I turn ideas into <span className="accent">apps people use</span> every day.
+            </h1>
+            <p className={styles.lead}>
+              I&apos;m Niraj Rai, a React Native developer with 3+ years of experience building and shipping
+              production Android, iOS and web products. I&apos;ve delivered 14 apps that now serve 20,000+
+              active users — queue systems in service centres, POS terminals in restaurants, feedback kiosks
+              and healthcare tools.
+            </p>
+            <p>
+              I enjoy the whole journey: shaping the architecture, crafting smooth UI with Reanimated, writing
+              Kotlin and Swift when a native module is needed, wiring real-time updates with Pusher and Firebase,
+              and owning CI/CD all the way to the App Store and Google Play. Alongside mobile, I build
+              companion dashboards in React, Next.js and Vite.
+            </p>
+            <p>
+              Outside of shipping features, I sharpen problem-solving with data structures and algorithms —
+              1,000+ problems solved on LeetCode and GeeksforGeeks.
+            </p>
 
-          <p className={styles.description}>
-            <strong>React Native Developer</strong> and <strong>Mobile Application Developer</strong> with <strong>3+ years</strong> of hands-on experience building and shipping production-grade Android, iOS, and web products end-to-end. 
-            I am a <strong>sole technical owner</strong> of multiple flagship products (Qwaiting, Spark Resto, Smart Review) serving <strong>20,000+ active users</strong>. 
-            Deep expertise in <strong>TypeScript, MVVM architecture, Clean Architecture, React Navigation, Firebase, Redux Toolkit, CI/CD, and App Store / Play Store releases</strong>.
-            <br />
-            <br />
-            <strong>Key highlights:</strong> Built and shipped <strong>12 production applications</strong>, maintained <strong>99.7% crash-free sessions</strong>, 
-            achieved <strong>50% JS bundle size reduction</strong> and <strong>35% startup performance improvement</strong>. 
-            Strong depth in native modules (Kotlin, Swift), REST APIs, OAuth/JWT, real-time systems (Pusher), and offline-first architecture.
-          </p>
+            <div className={styles.ctas}>
+              <button type="button" className="btn-primary" onClick={() => openResume()}>
+                <FaDownload /> Download résumé
+              </button>
+              <Link href="/site/contact" className="btn-ghost">
+                Get in touch <FaArrowRight />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
 
-          <div className={styles.skillsGrid}>
-            {skills.map((skill, index) => (
+        <div className={styles.section}>
+          <div className="section-head">
+            <span className="eyebrow">How I work</span>
+            <h2 className="section-title">
+              Principles behind <span className="accent">every release</span>
+            </h2>
+          </div>
+          <div className={styles.principles}>
+            {principles.map((p, i) => (
               <motion.div
-                key={index}
-                className={styles.skillCard}
-                variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
+                key={p.title}
+                className={styles.principle}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
               >
-                <div className={styles.skillIcon}>{skill.icon}</div>
-                <div className={styles.skillContent}>
-                  <h3>{skill.title}</h3>
-                  <p>{skill.description}</p>
-                </div>
+                <div className={styles.principleIcon}>{p.icon}</div>
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
               </motion.div>
             ))}
           </div>
+        </div>
 
-          <motion.div className={styles.highlight} variants={itemVariants}>
-            <p>
-              I focus on building <strong>accessible</strong>, <strong>performant</strong>, and <strong>scalable</strong> mobile applications
-              with production-ready architecture, comprehensive CI/CD pipelines, and exceptional user experiences. 
-              I own the full lifecycle from concept through App Store deployment and production maintenance.
-            </p>
-          </motion.div>
-
-          <motion.button
-            className={styles.downloadCV}
-            onClick={() => {
-              const win = window.open("/cv/NirajResume.html", "_blank");
-              setTimeout(() => {
-                win?.print();
-              }, 200);
-            }}
-            whileHover={{ scale: 1.05, boxShadow: "0 8px 25px rgba(255, 165, 0, 0.3)" }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <FaDownload />
-            <span>Download Resume</span>
-          </motion.button>
-        </motion.div>
-      </motion.div>
+        <div className={styles.section}>
+          <div className="section-head">
+            <span className="eyebrow">Journey</span>
+            <h2 className="section-title">
+              How I <span className="accent">got here</span>
+            </h2>
+          </div>
+          <ol className={styles.journey}>
+            {journey.map((j, i) => (
+              <motion.li
+                key={j.title}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.45 }}
+              >
+                <span className={styles.year}>{j.year}</span>
+                <div>
+                  <h3>{j.title}</h3>
+                  <p>{j.org}</p>
+                </div>
+              </motion.li>
+            ))}
+          </ol>
+        </div>
+      </div>
     </section>
   );
 }

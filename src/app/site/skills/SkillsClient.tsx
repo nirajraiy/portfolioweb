@@ -1,250 +1,157 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { 
-  FaCode, 
-  FaMobile, 
-  FaDatabase, 
-  FaTools, 
-  FaUsers, 
+import {
+  FaCode,
+  FaMobileAlt,
+  FaDatabase,
+  FaTools,
+  FaUsers,
   FaReact,
-  FaFire,
-  FaServer
+  FaVial,
+  FaServer,
+  FaSitemap,
+  FaPlug,
 } from "react-icons/fa";
 import "./styles.css";
 
-const SkillsClient = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
+const coreStack = [
+  { name: "React Native", note: "Primary · 3+ yrs" },
+  { name: "TypeScript", note: "Daily driver" },
+  { name: "Redux Toolkit", note: "State & data" },
+  { name: "Kotlin", note: "Android native" },
+  { name: "Swift", note: "iOS / tvOS native" },
+  { name: "Next.js", note: "Web & admin" },
+];
 
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut" as const,
-      }
-    }
-  };
+const skillCategories = [
+  {
+    icon: <FaCode />,
+    title: "Languages",
+    skills: ["TypeScript", "JavaScript (ES6+)", "Kotlin", "Swift", "Java", "HTML5", "CSS3"],
+  },
+  {
+    icon: <FaMobileAlt />,
+    title: "Mobile",
+    skills: ["React Native", "Android", "iOS", "Android TV / tvOS", "React Navigation", "Reanimated", "Gesture Handler", "Hermes", "Native Modules"],
+  },
+  {
+    icon: <FaReact />,
+    title: "Web",
+    skills: ["React.js", "Next.js", "Vite", "Tailwind CSS", "Framer Motion", "Responsive UI"],
+  },
+  {
+    icon: <FaServer />,
+    title: "State management",
+    skills: ["Redux Toolkit", "RTK Query", "React Query", "Zustand", "Context API"],
+  },
+  {
+    icon: <FaDatabase />,
+    title: "Data & storage",
+    skills: ["SQLite", "Realm", "AsyncStorage", "Secure Storage", "Offline-first sync", "Firebase"],
+  },
+  {
+    icon: <FaPlug />,
+    title: "APIs & integrations",
+    skills: ["REST APIs", "OAuth 2.0", "JWT", "Pusher", "WebSocket", "Firebase FCM", "Google Maps", "Deep Linking", "Razorpay", "In-app purchases", "Thermal printer SDKs"],
+  },
+  {
+    icon: <FaSitemap />,
+    title: "Architecture",
+    skills: ["MVVM", "Clean Architecture", "SOLID", "TurboModules", "Fabric", "White-label apps"],
+  },
+  {
+    icon: <FaTools />,
+    title: "CI/CD & release",
+    skills: ["Fastlane", "Bitrise", "GitHub Actions", "EAS Build", "App Store Connect", "Google Play Console"],
+  },
+  {
+    icon: <FaVial />,
+    title: "Testing & quality",
+    skills: ["Jest", "Detox (E2E)", "Unit & integration tests", "Crashlytics", "Performance profiling"],
+  },
+  {
+    icon: <FaUsers />,
+    title: "Ways of working",
+    skills: ["Agile / Scrum", "Jira", "Git", "Code review", "Technical documentation", "Product ownership"],
+  },
+];
 
-  const skillCategories = [
-    {
-      icon: <FaCode />,
-      title: "Languages",
-      skills: [
-        { name: "TypeScript", level: 95 },
-        { name: "JavaScript (ES6+)", level: 95 },
-        { name: "Kotlin", level: 85 },
-        { name: "Swift", level: 85 },
-        { name: "HTML5 & CSS3", level: 90 },
-        { name: "Java", level: 80 }
-      ]
-    },
-    {
-      icon: <FaMobile />,
-      title: "Mobile Application Development",
-      skills: [
-        { name: "React Native", level: 95 },
-        { name: "Android (Kotlin/XML)", level: 85 },
-        { name: "iOS (Swift/SwiftUI)", level: 85 },
-        { name: "React Navigation", level: 95 },
-        { name: "Reanimated", level: 90 },
-        { name: "Gesture Handler", level: 85 },
-        { name: "Hermes Engine", level: 85 },
-        { name: "Native Modules", level: 80 }
-      ]
-    },
-    {
-      icon: <FaReact />,
-      title: "Web & Frameworks",
-      skills: [
-        { name: "React.js", level: 95 },
-        { name: "Next.js", level: 90 },
-        { name: "Vite", level: 90 },
-        { name: "Tailwind CSS", level: 85 },
-        { name: "Framer Motion", level: 85 }
-      ]
-    },
-    {
-      icon: <FaServer />,
-      title: "State Management",
-      skills: [
-        { name: "Redux Toolkit", level: 95 },
-        { name: "RTK Query", level: 90 },
-        { name: "React Query", level: 85 },
-        { name: "Zustand", level: 80 },
-        { name: "Context API", level: 90 }
-      ]
-    },
-    {
-      icon: <FaDatabase />,
-      title: "Data & Storage",
-      skills: [
-        { name: "SQLite", level: 90 },
-        { name: "Realm", level: 85 },
-        { name: "AsyncStorage", level: 95 },
-        { name: "Secure Storage", level: 85 },
-        { name: "Offline-First Architecture", level: 90 },
-        { name: "Firebase", level: 85 }
-      ]
-    },
-    {
-      icon: <FaServer />,
-      title: "APIs & Integration",
-      skills: [
-        { name: "REST APIs", level: 95 },
-        { name: "OAuth 2.0", level: 85 },
-        { name: "JWT", level: 90 },
-        { name: "Pusher (Real-time)", level: 85 },
-        { name: "WebSocket", level: 85 },
-        { name: "Firebase FCM", level: 85 }
-      ]
-    },
-    {
-      icon: <FaReact />,
-      title: "Architecture & Patterns",
-      skills: [
-        { name: "MVVM", level: 95 },
-        { name: "Clean Architecture", level: 95 },
-        { name: "SOLID Principles", level: 90 },
-        { name: "TurboModules", level: 80 },
-        { name: "Fabric Architecture", level: 80 }
-      ]
-    },
-    {
-      icon: <FaTools />,
-      title: "DevOps & CI/CD",
-      skills: [
-        { name: "Bitrise", level: 90 },
-        { name: "Fastlane", level: 90 },
-        { name: "GitHub Actions", level: 85 },
-        { name: "EAS Build", level: 85 },
-        { name: "App Store Deploy", level: 90 },
-        { name: "Google Play Deploy", level: 90 }
-      ]
-    },
-    {
-      icon: <FaFire />,
-      title: "Testing & Quality",
-      skills: [
-        { name: "Jest", level: 90 },
-        { name: "Detox (E2E)", level: 85 },
-        { name: "Unit Testing", level: 90 },
-        { name: "Integration Testing", level: 85 },
-        { name: "Crashlytics", level: 85 }
-      ]
-    },
-    {
-      icon: <FaUsers />,
-      title: "Collaboration & Process",
-      skills: [
-        { name: "Agile/Scrum", level: 90 },
-        { name: "Jira", level: 85 },
-        { name: "Git Version Control", level: 95 },
-        { name: "Code Review", level: 90 },
-        { name: "Technical Leadership", level: 85 }
-      ]
-    }
-  ];
+const impact = [
+  { value: "50%", label: "Smaller JS bundle via Hermes & Metro tuning" },
+  { value: "35%", label: "Faster app startup" },
+  { value: "2×", label: "Release cadence — monthly to biweekly" },
+  { value: "99.7%", label: "Crash-free sessions in production" },
+];
 
+export default function SkillsClient() {
   return (
-    <section className="skills-section">
-      <motion.div 
-        className="skills-container"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.h1 className="skills-title" variants={itemVariants}>
-          Technical Skills & Mobile Architecture
-        </motion.h1>
+    <section className="page-shell skills-page">
+      <div className="page-inner">
+        <motion.header
+          className="section-head"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="eyebrow">Skills</span>
+          <h1 className="section-title">
+            The toolkit behind <span className="accent">14 production apps</span>
+          </h1>
+          <p className="section-subtitle">
+            A mobile-first stack, battle-tested across iOS, Android, Android TV, tvOS and the web.
+          </p>
+        </motion.header>
 
-        <div className="skills-grid">
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div 
-              key={categoryIndex}
-              className="skill-category"
-              variants={itemVariants}
-              whileHover={{ scale: 1.02, y: -5 }}
+        <motion.div
+          className="core-stack"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.6 }}
+        >
+          {coreStack.map((s) => (
+            <div key={s.name} className="core-item">
+              <strong>{s.name}</strong>
+              <span>{s.note}</span>
+            </div>
+          ))}
+        </motion.div>
+
+        <div className="skill-grid">
+          {skillCategories.map((c, i) => (
+            <motion.div
+              key={c.title}
+              className="skill-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: (i % 3) * 0.08, duration: 0.5 }}
             >
-              <div className="category-header">
-                <div className="category-icon">
-                  {category.icon}
-                </div>
-                <h2>{category.title}</h2>
+              <div className="skill-card-head">
+                <span className="skill-icon">{c.icon}</span>
+                <h2>{c.title}</h2>
               </div>
-              
-              <div className="skills-list">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div 
-                    key={skillIndex}
-                    className="skill-item"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 + (categoryIndex * 0.1) + (skillIndex * 0.05) }}
-                  >
-                    <div className="skill-info">
-                      <span className="skill-name">{skill.name}</span>
-                      <span className="skill-percentage">{skill.level}%</span>
-                    </div>
-                    <div className="skill-bar">
-                      <motion.div 
-                        className="skill-progress"
-                        initial={{ width: 0 }}
-                        animate={{ width: `${skill.level}%` }}
-                        transition={{ 
-                          delay: 0.5 + (categoryIndex * 0.1) + (skillIndex * 0.05),
-                          duration: 1,
-                          ease: "easeOut"
-                        }}
-                      />
-                    </div>
-                  </motion.div>
+              <ul className="skill-chips">
+                {c.skills.map((s) => (
+                  <li key={s}>{s}</li>
                 ))}
-              </div>
+              </ul>
             </motion.div>
           ))}
         </div>
 
-        <motion.div 
-          className="skills-summary"
-          variants={itemVariants}
-        >
-          <div className="summary-card">
-            <FaFire className="summary-icon" />
-            <div className="summary-content">
-              <h3>3+ Years</h3>
-              <p>Professional Mobile Development Experience</p>
-            </div>
+        <div className="impact">
+          <h2>Skills, measured in results</h2>
+          <div className="impact-grid">
+            {impact.map((m) => (
+              <div key={m.label} className="impact-item">
+                <strong>{m.value}</strong>
+                <span>{m.label}</span>
+              </div>
+            ))}
           </div>
-          <div className="summary-card">
-            <FaMobile className="summary-icon" />
-            <div className="summary-content">
-              <h3>12</h3>
-              <p>Mobile Apps Delivered to Production</p>
-            </div>
-          </div>
-          <div className="summary-card">
-            <FaUsers className="summary-icon" />
-            <div className="summary-content">
-              <h3>20K+ Users</h3>
-              <p>Served Across Mobile Platforms</p>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
-};
-
-export default SkillsClient;
+}

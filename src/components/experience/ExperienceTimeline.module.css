@@ -1,8 +1,32 @@
-.timelineWrap { position: relative; padding-left: 28px; }
-.line { position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg,#ffb347, #ffcc33); opacity: 0.12; border-radius: 2px; }
-.items { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.timelineWrap {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-left: 44px;
+}
 
-@media (min-width: 900px) {
-  .timelineWrap { padding-left: 40px; }
-  .items { grid-template-columns: 1fr; }
+.line {
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #ffa500 0%, rgba(255, 165, 0, 0.35) 60%, rgba(255, 165, 0, 0.04) 100%);
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+@media (max-width: 600px) {
+  .timelineWrap {
+    padding-left: 28px;
+  }
+
+  .line {
+    left: 7px;
+  }
 }

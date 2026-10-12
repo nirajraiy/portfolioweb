@@ -1,88 +1,105 @@
 import type { Metadata } from 'next';
 import ProjectsClient from './ProjectsClient';
+import { projects, liveProjects } from '@/data/projects';
+import { getAppStoreData } from '@/lib/storeData';
+import { SITE_URL, breadcrumbJsonLd } from '@/lib/seo';
 
-const siteUrl = 'https://portfolioweb-phi-one.vercel.app';
+export const revalidate = 86400;
+
+const GOOGLE_CATEGORIES: Record<string, string> = {
+  'Health & Fitness': 'HealthApplication',
+  Medical: 'HealthApplication',
+  Lifestyle: 'LifestyleApplication',
+  Finance: 'FinanceApplication',
+  'Food & Drink': 'LifestyleApplication',
+  Productivity: 'BusinessApplication',
+  Business: 'BusinessApplication',
+};
+
+function googleCategory(genre: string) {
+  return GOOGLE_CATEGORIES[genre] ?? 'BusinessApplication';
+}
 
 export const metadata: Metadata = {
-  title: 'React Native & Mobile App Projects | Niraj Rai Portfolio',
+  title: 'React Native App Portfolio — iOS & Android Apps on App Store and Google Play',
   description:
-    'Featured React Native, iOS, and Android applications built by Niraj Rai. Includes Smart Review, Qwaiting, Salonist, Spark Resto, and AddPeople serving 20,000+ users.',
+    'Portfolio of production React Native, Kotlin and Swift apps built by Niraj Rai and live on the App Store and Google Play — Qwaiting, Spark Resto POS, Smart Reviews, AdPeople, AdLyfe and more, serving 20,000+ users.',
+  keywords: [
+    'React Native app portfolio',
+    'React Native projects',
+    'iOS app developer portfolio',
+    'Android app developer portfolio',
+    'mobile app case studies',
+    'restaurant POS app developer',
+    'queue management app developer',
+    'healthcare app developer India',
+    'hire React Native developer',
+  ],
   alternates: {
     canonical: '/site/projects',
   },
   openGraph: {
-    title: 'React Native & Mobile App Projects | Niraj Rai Portfolio',
+    title: 'React Native App Portfolio | Niraj Rai',
     description:
-      'Explore 12+ production mobile applications shippped on App Store and Google Play by Niraj Rai - React Native & Mobile Application Developer.',
-    url: `${siteUrl}/site/projects`,
+      'Production iOS and Android apps shipped to the App Store and Google Play by Niraj Rai, React Native & Mobile Application Developer.',
+    url: `${SITE_URL}/site/projects`,
   },
 };
 
-export default function ProjectsPage() {
-  const jsonLd = {
+export default async function ProjectsPage() {
+  const store = await getAppStoreData(projects);
+
+  const appsJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Featured Mobile Applications by Niraj Rai',
-    description: 'Collection of production iOS and Android mobile apps developed by Niraj Rai.',
-    itemListElement: [
-      {
-        '@type': 'SoftwareApplication',
-        position: 1,
-        name: 'Smart Review & NPS App',
-        operatingSystem: 'ANDROID, IOS',
-        applicationCategory: 'BusinessApplication',
-        description: 'React Native customer feedback and NPS collection mobile application.',
-        author: {
-          '@type': 'Person',
-          name: 'Niraj Rai',
+    name: 'Mobile Applications by Niraj Rai',
+    description: 'Production iOS and Android mobile apps developed by Niraj Rai.',
+    numberOfItems: liveProjects.length,
+    itemListElement: liveProjects.map((p, i) => {
+      const s = store[p.slug];
+      return {
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': 'MobileApplication',
+          name: p.title,
+          description: p.tagline,
+          url: `${SITE_URL}/site/projects#${p.slug}`,
+          image: p.icon ? `${SITE_URL}${p.icon}` : undefined,
+          screenshot: p.screenshots?.map((src) => `${SITE_URL}${src}`),
+          operatingSystem: [p.appLink?.ios && 'iOS', p.appLink?.android && 'Android']
+            .filter(Boolean)
+            .join(', '),
+          applicationCategory: googleCategory(s?.genre ?? p.category),
+          softwareVersion: s?.version,
+          datePublished: s?.releasedAt?.slice(0, 10),
+          dateModified: s?.updatedAt?.slice(0, 10),
+          installUrl: p.appLink?.ios ?? p.appLink?.android,
+          sameAs: [p.appLink?.ios, p.appLink?.android].filter(Boolean),
+          offers: s?.price === 'Free' ? { '@type': 'Offer', price: '0', priceCurrency: 'INR' } : undefined,
+          aggregateRating:
+            s && s.ratingCount > 0
+              ? { '@type': 'AggregateRating', ratingValue: s.rating, ratingCount: s.ratingCount }
+              : undefined,
+          author: { '@id': `${SITE_URL}/#person` },
         },
-      },
-      {
-        '@type': 'SoftwareApplication',
-        position: 2,
-        name: 'Qwaiting Queue Management Suite',
-        operatingSystem: 'ANDROID, IOS',
-        applicationCategory: 'BusinessApplication',
-        description: 'Real-time queue tracking and staff management app suite serving 20,000+ active users.',
-        author: {
-          '@type': 'Person',
-          name: 'Niraj Rai',
-        },
-      },
-      {
-        '@type': 'SoftwareApplication',
-        position: 3,
-        name: 'Spark Resto - Restaurant Management POS',
-        operatingSystem: 'ANDROID, IOS',
-        applicationCategory: 'BusinessApplication',
-        description: 'Offline-first React Native POS app for restaurant management and order taking.',
-        author: {
-          '@type': 'Person',
-          name: 'Niraj Rai',
-        },
-      },
-      {
-        '@type': 'SoftwareApplication',
-        position: 4,
-        name: 'Salonist Check-In App',
-        operatingSystem: 'ANDROID, IOS',
-        applicationCategory: 'BusinessApplication',
-        description: 'In-salon mobile app for client check-ins and appointment management.',
-        author: {
-          '@type': 'Person',
-          name: 'Niraj Rai',
-        },
-      },
-    ],
+      };
+    }),
   };
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(appsJsonLd) }}
       />
-      <ProjectsClient />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([{ name: 'Projects', path: '/site/projects' }])),
+        }}
+      />
+      <ProjectsClient store={store} />
     </>
   );
 }

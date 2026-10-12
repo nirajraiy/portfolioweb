@@ -1,400 +1,498 @@
 "use client";
-import React, { useEffect, useRef, Suspense } from "react";
-import { motion } from "framer-motion";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { FaPlay, FaAppStore, FaGooglePlay, FaCode, FaMobile } from "react-icons/fa";
+import {
+  FaApple,
+  FaGooglePlay,
+  FaCheckCircle,
+  FaTools,
+  FaMobileAlt,
+  FaStar,
+  FaTicketAlt,
+  FaUserTie,
+  FaTv,
+  FaSlidersH,
+} from "react-icons/fa";
+import { projects, qwaitingSuite } from "@/data/projects";
+import { Project } from "@/types/project";
+import type { StoreDataMap, StoreInfo } from "@/lib/storeData";
 import "./styles.css";
 
-interface AppLink {
-  android?: string;
-  ios?: string;
-}
+type Filter = "all" | "live" | "development";
 
-interface Project {
-  title: string;
-  description: string;
-  tech: string[];
-  image: string;
-  appLink?: AppLink;
-  category: 'completed' | 'running';
-  featured?: boolean;
-}
-
-const projects: Project[] = [
-  {
-    title: "Smart Review & NPS App",
-    description: "An in-venue feedback and NPS collection platform built for service centers. This React Native app enables businesses to collect customer feedback in real-time, track NPS scores, and improve customer satisfaction. Features custom ratings, multi-channel feedback collection, team collaboration, and detailed analytics for actionable insights. Increased review completion by 25% with optimized user flows. Live on App Store and Google Play.",
-    tech: ["React Native", "TypeScript", "Firebase", "Push Notifications", "REST API"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      android: "https://play.google.com/store/apps/details?id=com.smartreviews&hl=en_IN",
-      ios: "https://apps.apple.com/us/app/shrivra-smart-reviews/id6738766927",
-    },
-    category: 'completed',
-    featured: true
-  },
-  {
-    title: "Qwaiting - For Display (Android)",
-    description: "A dedicated Kotlin Android app for displaying live queue status and missed tokens on store displays in real-time. Part of the comprehensive Qwaiting suite, this app keeps customers informed about wait times and their queue position with automatic updates using Pusher real-time messaging. Designed specifically for large displays in service centers. Live on Google Play.",
-    tech: ["Kotlin", "Android", "REST API", "Pusher", "Real-time Updates"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      android: "https://play.google.com/store/apps/details?id=com.qwaiting.qwaitingandroidtv&pcampaignid=web_share"
-    },
-    category: "completed",
-    featured: true
-  },
-  {
-    title: "Qwaiting Display TV (iOS)",
-    description: "A Swift-based iOS app for displaying live queue status on TVs and large displays. As part of the Qwaiting product suite, this app provides real-time queue updates and missed token alerts. Reduced average wait time by 35% with optimized real-time notification delivery. Live on App Store.",
-    tech: ["Swift", "iOS", "REST API", "Pusher", "Real-time Updates"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      ios: "https://apps.apple.com/in/app/qwaiting-display-tv/id6751566287"
-    },
-    category: "completed",
-    featured: true
-  },
-  {
-    title: "Qwaiting - For Staff",
-    description: "A React Native staff management app for queue handling, walk-in management, and appointment scheduling. Enables service center staff to efficiently manage customer queues, mark attended customers, and handle no-shows. Synced with the customer and display apps via REST APIs for seamless operation. Live on App Store and Google Play.",
-    tech: ["React Native", "TypeScript", "REST API", "Redux Toolkit", "Real-time Updates"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      ios: "https://apps.apple.com/in/app/qwaiting-for-staff/id6753288266",
-      android: "https://play.google.com/store/apps/details?id=com.qwaiting_staff&hl=en_IN"
-    },
-    category: "completed",
-    featured: true
-  },
-  {
-    title: "Qwaiting - For Customers",
-    description: "A React Native customer app enabling users to join queues, receive ticket notifications, and print digital tokens. Fully integrated with Pusher for real-time updates about queue position and estimated wait times. Supports multiple printer integrations including Universal Printer and iMini Printer. Core component of the Qwaiting queue management suite serving 20K+ active users. Live on Google Play.",
-    tech: ["React Native", "TypeScript", "REST API", "Pusher", "Universal Printer", "Redux Toolkit"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      android: "https://play.google.com/store/apps/details?id=com.qwaitingtiket&hl=en_IN"
-    },
-    category: "completed",
-    featured: true
-  },
-  {
-    title: "Salonist Check-In App",
-    description: "A user-friendly in-salon app designed to streamline walk-in bookings and quick check-ins for pre-booked clients. Optimized for tablets and kiosks, it reduces wait times and enhances customer experience with secure, fast, and organized appointment management.",
-    tech: ["React Native", "TypeScript", "Context API", "REST API", "Firebase"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      android: "https://play.google.com/store/apps/details?id=com.salonistcheckin&hl=en_IN",
-      ios: "https://apps.apple.com/us/app/salonist-checkin/id6746629343",
-    },
-    category: 'completed',
-    featured: true
-  },
-  {
-    title: "Spark Resto - Restaurant Management",
-    description: "An offline-first restaurant Point-of-Sale (POS) system built with React Native and JavaScript. Manages table reservations, order taking, kitchen communication, and bill printing. Features SQLite-based offline storage ensuring order flow continues during network outages. Enables seamless synchronization once connectivity is restored. Designed for full-service restaurants and food establishments. Live on App Store and Google Play.",
-    tech: ["React Native", "JavaScript", "SQLite", "REST API", "Universal Printer", "Offline-First"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      android: "https://play.google.com/store/apps/details?id=com.sparkresto&hl=en_IN",
-      ios: "https://apps.apple.com/us/app/spark-resto/id6740860532",
-    },
-    category: 'completed'
-  },
-  {
-    title: "After Life Estate Planning",
-    description: "An all-in-one estate planning mobile app designed to simplify the process of creating and managing Wills. Offers expert Shariah-compliant guidance, robust security, comprehensive asset management, and seamless integration.",
-    tech: ["React Native", "TypeScript", "Redux", "REST API"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      android: "https://play.google.com/store/apps/details?id=com.stellenafterlife",
-    },
-    category: 'completed'
-  },
-  {
-    title: "Harir Luxury Beauté Salon",
-    description: "A cross-platform mobile application for a high-end women's salon offering a luxury beauty experience. The app features elegant service listings, booking form with email notifications, and a design that reflects the premium nature of the brand.",
-    tech: ["React Native", "JavaScript", "Redux", "REST API"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      android: "https://play.google.com/store/apps/details?id=com.harir&hl=en_IN",
-      ios: "https://apps.apple.com/us/app/harirluxury/id6550916125",
-    },
-    category: 'completed'
-  },
-  {
-    title: "Keljhani Beauty Salon",
-    description: "A mobile app designed for a full-service beauty salon, offering appointment booking, service listings, and client engagement features. The app allows users to explore grooming and wellness services, book appointments, and receive updates via push notifications.",
-    tech: ["React Native", "JavaScript", "Redux", "REST API", "Push Notifications"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      ios: "https://apps.apple.com/us/app/keljhani/id6738165759",
-    },
-    category: 'completed'
-  },
-  {
-    title: "Adlife Hospital Management",
-    description: "A multi-level healthcare app built for diverse patient journeys, with dedicated pediatric care flows for ages 0-6, 7-12, and 13-18, plus separate school, student, and women’s health paths. The app manages patient registration, appointments, EMR, medications, and personalized care guidance, while supporting robust caching, offline resilience, and integrated end-to-end testing for reliable production readiness.",
-    tech: ["React Native", "TypeScript", "REST API", "Redux", "Stripe Payment Gateway", "Caching", "E2E Testing"],
-    image: "/projectpage.jpeg",
-    category: 'running'
-  },
-  {
-    title: "AppointEze Salon Management",
-    description: "A powerful and easy-to-use mobile solution designed for salons, spas, beauty parlors, and wellness centers to manage their day-to-day operations effortlessly. From appointment scheduling to billing, staff coordination to inventory tracking.",
-    tech: ["React Native", "TypeScript", "REST API", "Redux"],
-    image: "/projectpage.jpeg",
-    category: 'running'
-  },
-  {
-    title: "Zayada Sales & Project Tracking",
-    description: "An all-in-one platform designed to help businesses manage sales processes and track project progress step by step. From lead generation to final delivery, the app gives teams complete visibility and control over every stage.",
-    tech: ["React Native", "TypeScript", "REST API", "Context API"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      android: "https://play.google.com/store/apps/details?id=com.zayada.sales&hl=en_IN",
-      ios: "https://apps.apple.com/in/app/zayda/id6752843391",
-    },
-    category: 'completed'
-  },
-  {
-    title: "AddPeople",
-    description: "A doctor scheduling and medical-camp management platform that reduces manual coordination and speeds up appointment workflows. Enables healthcare organizations to assign doctors to medical camps, track attendance, manage schedules, and handle camp finances. Features appointment scheduling, doctor availability management, comprehensive reporting, and efficient field team coordination. Built with React Native and TypeScript for reliable cross-platform performance. Live on App Store and Google Play.",
-    tech: ["React Native", "TypeScript", "REST API", "Firebase", "Context API"],
-    image: "/projectpage.jpeg",
-    appLink: {
-      android: "https://play.google.com/store/apps/details?id=com.adpeople&pcampaignid=web_share",
-      ios: "https://apps.apple.com/us/app/adpeople/id6756572493"
-    },
-    category: 'completed',
-    featured: true
-  }
+const filters: { id: Filter; label: string }[] = [
+  { id: "all", label: "All apps" },
+  { id: "live", label: "Live on stores" },
+  { id: "development", label: "In development" },
 ];
 
-function ProjectsPageContent() {
-  const searchParams = useSearchParams();
-  const runningRef = useRef<HTMLDivElement>(null);
-  const completedRef = useRef<HTMLDivElement>(null);
+const monthYear = new Intl.DateTimeFormat("en-IN", { month: "short", year: "numeric", timeZone: "UTC" });
 
-  useEffect(() => {
-    const section = searchParams.get("section");
-
-    if (section === "running" && runningRef.current) {
-      runningRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-
-    if (section === "completed" && completedRef.current) {
-      completedRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [searchParams]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut" as const
-      }
-    }
-  };
-
-  const getProjectIcon = (category: string) => {
-    return category === 'completed' ? <FaCode /> : <FaMobile />;
-  };
-
-  const renderProjectCard = (project: Project, index: number) => (
-    <motion.div
-      className={`project-card ${project.featured ? 'featured' : ''}`}
-      key={index}
-      variants={itemVariants}
-      whileHover={{ scale: 1.02, y: -5 }}
-      whileTap={{ scale: 0.98 }}
-    >
-      <div className="project-header">
-        <div className="project-category">
-          <span className="category-icon">
-            {getProjectIcon(project.category)}
-          </span>
-          <span className="category-text">
-            {project.category === 'completed' ? 'Completed' : 'In Development'}
-          </span>
-        </div>
-        {project.featured && (
-          <div className="featured-badge">
-            <FaCode />
-            <span>Featured</span>
-          </div>
-        )}
-      </div>
-
-      <div className="project-image-container">
-        <Image
-          src={project.image}
-          alt={`${project.title} - Mobile Application by Niraj Rai`}
-          width={300}
-          height={200}
-          className="project-image"
-        />
-        <div className="project-overlay">
-          <div className="overlay-content">
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="project-content">
-        <h2>{project.title}</h2>
-        <p className="project-description">{project.description}</p>
-        
-        <div className="tech-stack">
-          <h4>Technologies Used</h4>
-          <div className="tech-tags">
-            {project.tech.map((tech, i) => (
-              <motion.span 
-                key={i}
-                className="tech-tag"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {tech}
-              </motion.span>
-            ))}
-          </div>
-        </div>
-
-        {project.appLink && (
-          <div className="project-links">
-            {project.appLink.android && (
-              <motion.a
-                href={project.appLink.android}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="store-link android"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaGooglePlay />
-                <span>Play Store</span>
-              </motion.a>
-            )}
-            {project.appLink.ios && (
-              <motion.a
-                href={project.appLink.ios}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="store-link ios"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaAppStore />
-                <span>App Store</span>
-              </motion.a>
-            )}
-          </div>
-        )}
-      </div>
-    </motion.div>
-  );
-
-  const completedProjects = projects.filter(p => p.category === 'completed');
-  const runningProjects = projects.filter(p => p.category === 'running');
-  const featuredProjects = projects.filter(p => p.featured);
-
+function StoreMeta({ info, project }: { info?: StoreInfo; project: Project }) {
+  if (!info) return null;
   return (
-    <section className="projects-section">
-      <motion.div 
-        className="projects-container"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div className="projects-header" variants={itemVariants}>
-          <h1>React Native & Mobile Application Projects</h1>
-          <p>Explore production iOS, Android, and web applications built by Niraj Rai</p>
-        </motion.div>
+    <div className="store-meta" aria-label="Live App Store details">
+      {info.ratingCount > 0 && (
+        <span className="store-rating">
+          <FaStar /> {info.rating.toFixed(1)} <small>({info.ratingCount})</small>
+        </span>
+      )}
+      <span>v{info.version}</span>
+      <span>Updated {monthYear.format(new Date(info.updatedAt))}</span>
+      <span>
+        {project.tech.includes("tvOS") ? "tvOS" : "iOS"} {info.minimumOs}+
+      </span>
+    </div>
+  );
+}
 
-        <motion.div 
-          className="featured-projects"
-          variants={itemVariants}
+function StoreButtons({ project }: { project: Project }) {
+  if (!project.appLink) return null;
+  return (
+    <div className="store-row">
+      {project.appLink.ios && (
+        <a
+          href={project.appLink.ios}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="store-btn"
+          aria-label={`${project.title} on the App Store`}
         >
-          <h2>🌟 Featured Mobile Apps</h2>
-          <div className="featured-grid">
-            {featuredProjects.map((project, index) => renderProjectCard(project, index))}
-          </div>
-        </motion.div>
+          <FaApple className="store-btn-icon" />
+          <span>
+            <small>Download on the</small>
+            App Store
+          </span>
+        </a>
+      )}
+      {project.appLink.android && (
+        <a
+          href={project.appLink.android}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="store-btn"
+          aria-label={`${project.title} on Google Play`}
+        >
+          <FaGooglePlay className="store-btn-icon" />
+          <span>
+            <small>Get it on</small>
+            Google Play
+          </span>
+        </a>
+      )}
+    </div>
+  );
+}
 
-        <motion.div 
-          className="completed-projects"
-          variants={itemVariants}
-          ref={completedRef}
-        >
-          <h2>✅ Shipped Production Apps</h2>
-          <div className="projects-grid">
-            {completedProjects.filter(p => !p.featured).map((project, index) => renderProjectCard(project, index))}
-          </div>
-        </motion.div>
+function AppIcon({ project, size }: { project: Project; size: number }) {
+  if (project.icon) {
+    return (
+      <Image
+        src={project.icon}
+        alt={`${project.title} app icon`}
+        width={size}
+        height={size}
+        className="app-icon"
+        style={{ width: size, height: size }}
+      />
+    );
+  }
+  const initials = project.title
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("");
+  return (
+    <div className="app-icon app-icon-fallback" style={{ width: size, height: size }} aria-hidden>
+      {initials}
+    </div>
+  );
+}
 
-        <motion.div 
-          className="running-projects"
-          variants={itemVariants}
-          ref={runningRef}
-        >
-          <h2>🚧 Apps in Active Development</h2>
-          <div className="projects-grid">
-            {runningProjects.filter(p => !p.featured).map((project, index) => renderProjectCard(project, index))}
-          </div>
-        </motion.div>
+function Screenshots({ project }: { project: Project }) {
+  if (!project.screenshots?.length) {
+    return (
+      <div className="shots shots-empty">
+        <FaMobileAlt />
+        <span>Screens coming soon</span>
+      </div>
+    );
+  }
+  const landscape = project.orientation === "landscape";
+  return (
+    <div className={`shots ${landscape ? "shots-landscape" : "shots-portrait"}`}>
+      {project.screenshots.map((src, i) => (
+        <div className="shot" key={src}>
+          <Image
+            src={src}
+            alt={`${project.title} screenshot ${i + 1}`}
+            fill
+            sizes={landscape ? "(max-width: 768px) 80vw, 360px" : "(max-width: 768px) 40vw, 180px"}
+            className="shot-img"
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
 
-        <motion.div 
-          className="projects-summary"
-          variants={itemVariants}
-        >
-          <div className="summary-card">
-            <FaCode className="summary-icon" />
-            <div className="summary-content">
-              <h3>{completedProjects.length}</h3>
-              <p>Completed Apps</p>
+function FeaturedCard({ project, index, info }: { project: Project; index: number; info?: StoreInfo }) {
+  return (
+    <motion.article
+      className={`spotlight ${index % 2 ? "spotlight-reverse" : ""}`}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <div className="spotlight-info">
+        <div className="app-head">
+          <AppIcon project={project} size={72} />
+          <div>
+            <div className="app-meta">
+              {project.badge && <span className="pill-new">{project.badge}</span>}
+              <span>{info?.genre ?? project.category}</span>
+              {project.role && <span className="pill-owner">{project.role}</span>}
             </div>
+            <h3 className="app-title">{project.title}</h3>
           </div>
-          <div className="summary-card">
-            <FaMobile className="summary-icon" />
-            <div className="summary-content">
-              <h3>{runningProjects.length}</h3>
-              <p>In Development</p>
+        </div>
+        <p className="app-tagline">{project.tagline}</p>
+        <StoreMeta info={info} project={project} />
+        <p className="app-desc">{project.description}</p>
+
+        {project.highlights && (
+          <ul className="highlights">
+            {project.highlights.map((h) => (
+              <li key={h}>
+                <FaCheckCircle />
+                {h}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div className="chips">
+          {project.tech.map((t) => (
+            <span className="chip" key={t}>
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <StoreButtons project={project} />
+      </div>
+
+      <div className="spotlight-media">
+        <Screenshots project={project} />
+      </div>
+    </motion.article>
+  );
+}
+
+function AppCard({ project, info }: { project: Project; info?: StoreInfo }) {
+  const landscape = project.orientation === "landscape";
+  const covers = project.screenshots?.slice(0, landscape ? 1 : 3) ?? [];
+  return (
+    <motion.article
+      layout
+      id={project.slug}
+      className="app-card"
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 12 }}
+      transition={{ duration: 0.35 }}
+    >
+      <div className={`card-cover ${landscape ? "cover-landscape" : "cover-portrait"}`}>
+        {covers.length ? (
+          covers.map((src, i) => (
+            <div className="cover-frame" key={src}>
+              <Image
+                src={src}
+                alt={`${project.title} screenshot ${i + 1}`}
+                fill
+                sizes={landscape ? "(max-width: 768px) 100vw, 380px" : "130px"}
+                className="cover-img"
+              />
             </div>
+          ))
+        ) : (
+          <div className="cover-empty">
+            <FaTools />
+            <span>In active development</span>
           </div>
-          <div className="summary-card">
-            <FaPlay className="summary-icon" />
-            <div className="summary-content">
-              <h3>20K+</h3>
-              <p>Active App Users</p>
+        )}
+        <span className={`status ${project.status}`}>
+          {project.status === "live" ? "Live" : "Building"}
+        </span>
+      </div>
+
+      <div className="card-body">
+        <div className="app-head small">
+          <AppIcon project={project} size={52} />
+          <div>
+            <div className="app-meta">
+              {project.badge && <span className="pill-new">{project.badge}</span>}
+              <span>{info?.genre ?? project.category}</span>
+              {project.role && <span className="pill-owner">{project.role}</span>}
             </div>
+            <h3 className="app-title">{project.title}</h3>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+        <StoreMeta info={info} project={project} />
+        <p className="card-desc">{project.description}</p>
+        <div className="chips">
+          {project.tech.slice(0, 4).map((t) => (
+            <span className="chip" key={t}>
+              {t}
+            </span>
+          ))}
+        </div>
+        <StoreButtons project={project} />
+      </div>
+    </motion.article>
+  );
+}
+
+const suiteFlow = [
+  { icon: <FaTicketAlt />, title: "Customer takes a token", text: "Kiosk apps book a queue or appointment and print a ticket through multiple thermal-printer SDKs." },
+  { icon: <FaUserTie />, title: "Staff call & serve", text: "Agents call the next token, mark attended and handle no-shows or appointments." },
+  { icon: <FaTv />, title: "Displays update live", text: "Android TV and Apple TV boards show now-serving and missed tokens via Pusher." },
+];
+
+const clientCustomisations = [
+  "Client branding — logos, colours and ticket layouts",
+  "Per-client counters, services and queue rules",
+  "Printer SDKs and kiosk hardware per site (Java & React Native)",
+  "Feature modules enhanced to each client's workflow",
+];
+
+function QwaitingSuite({ store }: { store: StoreDataMap }) {
+  return (
+    <section className="suite" id="qwaiting-suite" aria-labelledby="suite-title">
+      <div className="suite-head">
+        <div>
+          <div className="app-meta">
+            <span>Product suite</span>
+            <span className="pill-owner">Built, modified &amp; maintained</span>
+          </div>
+          <h2 id="suite-title" className="suite-title">
+            Qwaiting — {qwaitingSuite.length} dedicated apps, one queue system
+          </h2>
+          <p className="suite-lead">
+            A complete queue-management platform for service centres. Instead of one app doing everything,
+            each user gets a dedicated app — staff, customer kiosks, the native Java queue &amp; appointment app
+            and in-venue TV displays — all synced in real time. Each client deployment is customised and
+            enhanced for their branding, printer hardware and workflow.
+          </p>
+        </div>
+        <div className="suite-stats">
+          <div><strong>20K+</strong><span>Users across suite</span></div>
+          <div><strong>35%</strong><span>Lower wait time</span></div>
+          <div><strong>{qwaitingSuite.length}</strong><span>Dedicated apps</span></div>
+        </div>
+      </div>
+
+      <div className="suite-apps">
+        {qwaitingSuite.map((p, i) => {
+          const info = store[p.slug];
+          return (
+            <motion.article
+              key={p.slug}
+              id={p.slug}
+              className="suite-app"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: i * 0.08, duration: 0.45 }}
+            >
+              <div className={`suite-shot ${p.orientation === "landscape" ? "landscape" : "portrait"}`}>
+                {p.screenshots?.[0] && (
+                  <Image
+                    src={p.screenshots[0]}
+                    alt={`${p.title} screenshot`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 280px"
+                    className="cover-img"
+                  />
+                )}
+                {p.role && p.role !== "Sole owner" && <span className="suite-role">{p.role}</span>}
+              </div>
+              <div className="suite-app-body">
+                <span className="suite-audience">{p.audience}</span>
+                <div className="app-head small">
+                  <AppIcon project={p} size={44} />
+                  <h3 className="app-title">{p.title.replace(/^Qwaiting\s*[–-]?\s*/, "")}</h3>
+                </div>
+                <StoreMeta info={info} project={p} />
+                <p className="card-desc">{p.tagline}</p>
+                <div className="chips">
+                  {p.tech.slice(0, 3).map((t) => (
+                    <span className="chip" key={t}>{t}</span>
+                  ))}
+                </div>
+                <StoreButtons project={p} />
+              </div>
+            </motion.article>
+          );
+        })}
+      </div>
+
+      <div className="suite-bottom">
+        <div className="suite-flow">
+          <h3>How the apps work together</h3>
+          <ol>
+            {suiteFlow.map((f, i) => (
+              <li key={f.title}>
+                <span className="flow-icon">{f.icon}</span>
+                <div>
+                  <strong>{i + 1}. {f.title}</strong>
+                  <p>{f.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div className="suite-custom">
+          <h3><FaSlidersH /> Customised &amp; enhanced per client</h3>
+          <ul>
+            {clientCustomisations.map((c) => (
+              <li key={c}><FaCheckCircle />{c}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </section>
   );
 }
 
-export default function ProjectsClient() {
+function ProjectsPageContent({ store }: { store: StoreDataMap }) {
+  const searchParams = useSearchParams();
+  const [filter, setFilter] = useState<Filter>("all");
+
+  useEffect(() => {
+    const section = searchParams.get("section");
+    if (section === "running") setFilter("development");
+    if (section === "completed") setFilter("live");
+    if (section) {
+      document.getElementById("all-apps")?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [searchParams]);
+
+  const featured = projects.filter((p) => p.featured);
+  const liveCount = projects.filter((p) => p.status === "live").length;
+  const devCount = projects.length - liveCount;
+  const iconWall = projects.filter((p) => p.icon);
+
+  const visible = useMemo(
+    () => projects.filter((p) => !p.featured && !p.suite && (filter === "all" || p.status === filter)),
+    [filter]
+  );
+
   return (
-    <Suspense fallback={<div>Loading projects...</div>}>
-      <ProjectsPageContent />
+    <section className="page-shell projects-page">
+      <div className="page-inner">
+        <motion.header
+          className="section-head"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="eyebrow">Portfolio</span>
+          <h1 className="section-title">
+            Apps I&apos;ve built &amp; <span className="accent">shipped to the stores</span>
+          </h1>
+          <p className="section-subtitle">
+            Production React Native, Kotlin and Swift apps used every day by restaurants, clinics,
+            salons and service centres — designed, built, released and maintained end to end.
+          </p>
+        </motion.header>
+
+        <motion.div
+          className="icon-wall"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          {iconWall.map((p) => (
+            <a key={p.slug} href={`#${p.slug}`} className="icon-wall-item" title={p.title}>
+              <Image src={p.icon!} alt={p.title} width={56} height={56} />
+            </a>
+          ))}
+        </motion.div>
+
+        <div className="stat-strip">
+          <div>
+            <strong>{liveCount}</strong>
+            <span>Live store listings</span>
+          </div>
+          <div>
+            <strong>20K+</strong>
+            <span>Active users</span>
+          </div>
+          <div>
+            <strong>99.7%</strong>
+            <span>Crash-free sessions</span>
+          </div>
+          <div>
+            <strong>{devCount}</strong>
+            <span>In development</span>
+          </div>
+        </div>
+
+        <div className="block-head">
+          <h2>Flagship products</h2>
+          <p>Highlighted products, newest first — from architecture to App Store release.</p>
+        </div>
+        <div className="spotlight-list">
+          {featured.map((p, i) => (
+            <div id={p.slug} key={p.slug}>
+              <FeaturedCard project={p} index={i} info={store[p.slug]} />
+            </div>
+          ))}
+        </div>
+
+        <div className="block-head">
+          <h2>Qwaiting product suite</h2>
+          <p>Multiple dedicated apps I built and maintain for one queue-management platform.</p>
+        </div>
+        <QwaitingSuite store={store} />
+
+        <div className="block-head" id="all-apps">
+          <h2>More apps</h2>
+          <div className="filter-tabs" role="tablist" aria-label="Filter apps">
+            {filters.map((f) => (
+              <button
+                key={f.id}
+                role="tab"
+                aria-selected={filter === f.id}
+                className={`filter-tab ${filter === f.id ? "active" : ""}`}
+                onClick={() => setFilter(f.id)}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <motion.div layout className="app-grid">
+          <AnimatePresence mode="popLayout">
+            {visible.map((p) => (
+              <AppCard key={p.slug} project={p} info={store[p.slug]} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+export default function ProjectsClient({ store = {} }: { store?: StoreDataMap }) {
+  return (
+    <Suspense fallback={<div className="page-shell" />}>
+      <ProjectsPageContent store={store} />
     </Suspense>
   );
 }

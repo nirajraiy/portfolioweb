@@ -2,17 +2,13 @@ import type { Metadata } from 'next';
 import Hero from '@/components/homePage/Hero';
 
 export const metadata: Metadata = {
-  title: 'Niraj Rai | React Native & Mobile Application Developer',
+  title: {
+    absolute: 'Niraj Rai — React Native Developer | iOS & Android Mobile App Developer, India',
+  },
   description:
-    'Niraj Rai is a React Native Developer & Mobile Application Developer with 3+ years of hands-on experience building enterprise-grade iOS, Android, and cross-platform apps.',
+    'Hire Niraj Rai, a React Native developer in Mohali, India. 3+ years building iOS and Android apps with React Native, TypeScript, Kotlin and Swift — 14 production apps on the App Store and Google Play, 20,000+ users.',
   alternates: {
     canonical: '/',
-  },
-  openGraph: {
-    title: 'Niraj Rai | React Native & Mobile Application Developer',
-    description:
-      'Portfolio of Niraj Rai - React Native & Mobile Application Developer with 3+ years experience building flagship apps serving 20,000+ active users.',
-    url: 'https://portfolioweb-phi-one.vercel.app',
   },
 };
 

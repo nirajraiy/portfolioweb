@@ -10,6 +10,7 @@ export interface Experience {
   duration: string;
   location: string;
   type?: string;
+  summary?: string;
   technologies: string[];
   responsibilities: string[];
   achievements?: string[];

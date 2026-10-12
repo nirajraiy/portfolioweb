@@ -1,20 +1,26 @@
 import type { Metadata } from 'next';
 import ContactClient from './ContactClient';
-
-const siteUrl = 'https://portfolioweb-phi-one.vercel.app';
+import { PERSON, SITE_URL, breadcrumbJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Contact Niraj Rai | Hire React Native & Mobile Application Developer',
+  title: 'Contact — Hire a React Native Developer',
   description:
-    'Contact Niraj Rai for React Native development, iOS/Android mobile application projects, consulting, or full-time software engineering roles.',
+    'Hire Niraj Rai, React Native developer in Mohali, India, for full-time, remote or freelance iOS and Android app development. Email, phone, LinkedIn and contact form.',
+  keywords: [
+    'hire React Native developer',
+    'hire mobile app developer India',
+    'freelance React Native developer',
+    'React Native developer for hire',
+    'contact Niraj Rai',
+  ],
   alternates: {
     canonical: '/site/contact',
   },
   openGraph: {
-    title: 'Contact Niraj Rai | Hire React Native & Mobile Application Developer',
+    title: 'Contact Niraj Rai — Hire a React Native Developer',
     description:
-      'Get in touch with Niraj Rai - React Native & Mobile Application Developer for mobile development opportunities and consulting.',
-    url: `${siteUrl}/site/contact`,
+      'Get in touch for React Native roles, freelance mobile app projects or consulting.',
+    url: `${SITE_URL}/site/contact`,
   },
 };
 
@@ -24,18 +30,19 @@ export default function ContactPage() {
     '@type': 'ContactPage',
     name: 'Contact Niraj Rai',
     description: 'Contact details and inquiry form for Niraj Rai - React Native Developer.',
-    url: `${siteUrl}/site/contact`,
+    url: `${SITE_URL}/site/contact`,
     mainEntity: {
+      '@id': `${SITE_URL}/#person`,
       '@type': 'Person',
-      name: 'Niraj Rai',
-      jobTitle: 'React Native & Mobile Application Developer',
-      email: 'nirajraibxr657@gmail.com',
-      telephone: '+91 74819 55476',
+      name: PERSON.name,
+      jobTitle: PERSON.jobTitle,
+      email: PERSON.email,
+      telephone: PERSON.telephone,
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Mohali',
         addressRegion: 'Punjab',
-        addressCountry: 'India',
+        addressCountry: 'IN',
       },
     },
   };
@@ -45,6 +52,12 @@ export default function ContactPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([{ name: 'Contact', path: '/site/contact' }])),
+        }}
       />
       <ContactClient />
     </>

@@ -8,93 +8,66 @@ export const experiences: Experience[] = [
     duration: "Jan 2024 – Present",
     location: "Mohali, India",
     type: "Full-time",
+    summary:
+      "Own multiple production products end to end — architecture, development, store releases and production support across Android, iOS and web.",
     technologies: [
       "React Native",
       "TypeScript",
       "Redux Toolkit",
+      "Kotlin",
+      "Swift",
       "Firebase",
       "Pusher",
-      "REST APIs",
-      "MVVM",
-      "Clean Architecture"
+      "Next.js",
+      "Fastlane",
+      "Bitrise",
     ],
     responsibilities: [
-      "Sole owner of the Qwaiting suite (Staff, Customer, Display TV): architecture, development, store releases, production support, and continuous maintenance",
-      "Sole owner of Spark Resto and Smart Review — built both products and remain accountable for features, releases, and day-to-day ownership on Android and iOS",
-      "Shipped 6 white-label React Native apps in TypeScript (Redux Toolkit, MVVM, Clean Architecture) to 20,000+ users; cut time-to-market by ~40% via reusable modules",
-      "Delivered companion web / admin surfaces in React.js, Next.js, and Vite with shared TypeScript contracts across mobile and web",
-      "Owned CI/CD with Bitrise, Fastlane, GitHub Actions, and EAS Build; moved release cadence from monthly to biweekly"
+      "Sole owner of the Qwaiting suite (Staff, Customer, Display TV) — architecture, development, App Store / Google Play releases and production support; real-time token updates cut average wait time by 35%.",
+      "Built Spark Resto (offline-first restaurant POS) and Smart Reviews (NPS kiosk) from scratch; optimised feedback flows lifted review completion by 25%.",
+      "Shipped 6 white-label React Native apps in TypeScript (Redux Toolkit, MVVM, Clean Architecture) to 20,000+ users, cutting time-to-market by ~40% with reusable modules and a shared UI library.",
+      "Reduced JS bundle size by 50% and improved startup time by 35% through Hermes, Metro tuning and native modules in Kotlin and Swift.",
+      "Owned CI/CD with Bitrise, Fastlane, GitHub Actions and EAS Build, moving releases from monthly to biweekly while sustaining 99.7% crash-free sessions.",
+      "Delivered companion web and admin dashboards in React.js, Next.js and Vite with shared TypeScript API contracts.",
     ],
-    achievements: [
-      "12 Production Apps Shipped",
-      "20K+ Active Users",
-      "99.7% Crash-Free Sessions",
-      "50% JS Bundle Size Reduction",
-      "35% Startup Performance Improvement"
-    ],
+    achievements: ["14 apps shipped", "20K+ active users", "99.7% crash-free", "−50% bundle size", "+35% faster startup"],
     stats: [
-      { label: "Apps", value: "12" },
+      { label: "Apps", value: "14" },
       { label: "Users", value: "20K+" },
-      { label: "Crash-Free", value: "99.7%" }
-    ]
+      { label: "Crash-free", value: "99.7%" },
+    ],
   },
-
   {
     id: 2,
     role: "React Native Developer (Trainee)",
     company: "Dev Technosys Pvt. Ltd.",
-    duration: "April 2023 – September 2023",
+    duration: "Apr 2023 – Sep 2023",
     location: "Jaipur, India",
-    type: "Training",
-    technologies: [
-      "React Native",
-      "JavaScript",
-      "Redux",
-      "REST APIs",
-      "OAuth / JWT",
-      "Agile"
-    ],
+    type: "Trainee",
+    summary: "Built feature modules for client React Native apps inside an Agile delivery team.",
+    technologies: ["React Native", "JavaScript", "Redux", "REST APIs", "OAuth / JWT", "Jira"],
     responsibilities: [
-      "Owned React Native feature modules spanning REST APIs, navigation, and state management through development and QA",
-      "Implemented OAuth / JWT authentication, responsive UI, and offline-capable flows for more reliable sessions",
-      "Delivered in Agile / Scrum with Jira, sprint planning, Git, and peer code review"
+      "Owned React Native feature modules spanning REST API integration, navigation flows and state management through development and QA.",
+      "Implemented OAuth / JWT authentication, responsive layouts and offline-capable flows for reliable sessions on poor networks.",
+      "Delivered in Agile / Scrum with Jira, sprint planning, Git workflows and peer code reviews.",
     ],
-    achievements: [
-      "Feature Module Ownership",
-      "Authentication Implementation",
-      "Agile Team Collaboration"
-    ],
-    stats: [{ label: "Projects", value: "3+" }]
+    achievements: ["Feature-module ownership", "Auth & offline flows"],
   },
-
   {
     id: 3,
     role: "Associate Software Engineer (Trainee)",
     company: "HabileLabs Private Limited",
-    duration: "Nov 2022 – March 2023",
+    duration: "Nov 2022 – Mar 2023",
     location: "Jaipur, India",
-    type: "Training",
-    technologies: [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "React.js",
-      "Vite",
-      "Next.js",
-      "Node.js",
-      "REST APIs"
-    ],
+    type: "Trainee",
+    summary: "Started my engineering career building full-stack web features.",
+    technologies: ["React.js", "Next.js", "Vite", "Node.js", "JavaScript", "HTML5", "CSS3"],
     responsibilities: [
-      "Built web features with HTML, CSS, JavaScript, React.js, Vite, Next.js, Node.js, and REST APIs",
-      "Practiced SDLC, Git version control, and technical documentation in Agile sprints"
+      "Built web features with React.js, Next.js, Vite, Node.js and REST APIs on full-stack client projects.",
+      "Practised SDLC, Git version control, technical documentation and Agile sprints in cross-functional teams.",
     ],
-    achievements: [
-      "Full-Stack Web Development",
-      "Version Control Mastery",
-      "Agile Methodology"
-    ],
-    stats: [{ label: "Technologies", value: "8+" }]
-  }
+    achievements: ["Full-stack foundations"],
+  },
 ];
 
 export default experiences;

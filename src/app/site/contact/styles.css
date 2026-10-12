@@ -1,15 +1,18 @@
 /* Modern Contact Section */
 .contactSection {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d0d0d 100%);
+  background:
+    radial-gradient(1000px 500px at 85% -10%, rgba(255, 138, 0, 0.12), transparent 60%),
+    radial-gradient(800px 400px at -10% 30%, rgba(255, 94, 58, 0.07), transparent 60%),
+    #0a0a0a;
   color: white;
-  padding: 100px 20px 80px;
+  padding: 72px 20px 96px;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
 }
 
 .contactContainer {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 2;

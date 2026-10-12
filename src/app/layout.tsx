@@ -3,39 +3,26 @@ import type { Metadata, Viewport } from 'next';
 import Navbar from '@/components/constants/Navbar';
 import Footer from '@/components/constants/Footer';
 import PageTransition from '@/components/PageTransition';
+import { CORE_KEYWORDS, PERSON, SITE_NAME, SITE_URL } from '@/lib/seo';
+import { liveProjects } from '@/data/projects';
 import './globals.css';
 
-const siteUrl = 'https://portfolioweb-phi-one.vercel.app';
+const description =
+  'Niraj Rai is a React Native Developer in Mohali, India with 3+ years building iOS and Android apps in React Native, TypeScript, Kotlin and Swift — 14 production apps on the App Store and Google Play serving 20,000+ users. Open to full-time, remote and freelance roles.';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Niraj Rai | React Native & Mobile Application Developer',
-    template: '%s | Niraj Rai - React Native Developer',
+    default: 'Niraj Rai — React Native Developer | iOS & Android Mobile App Developer, India',
+    template: '%s | Niraj Rai, React Native Developer',
   },
-  description:
-    'Portfolio of Niraj Rai - React Native Developer & Mobile Application Developer with 3+ years of experience building enterprise-grade iOS, Android, and cross-platform apps serving 20,000+ active users.',
-  keywords: [
-    'Niraj Rai',
-    'React Native Developer',
-    'Mobile Application Developer',
-    'React Native Engineer',
-    'iOS Developer',
-    'Android Developer',
-    'Mobile App Architect',
-    'TypeScript Developer',
-    'Cross-Platform Mobile Developer',
-    'Kotlin',
-    'Swift',
-    'Next.js Developer',
-    'Frontend Engineer',
-    'App Store Publishing',
-    'Google Play Console',
-    'React Native Portfolio',
-  ],
-  authors: [{ name: 'Niraj Rai', url: siteUrl }],
-  creator: 'Niraj Rai',
-  publisher: 'Niraj Rai',
+  description,
+  applicationName: SITE_NAME,
+  keywords: CORE_KEYWORDS,
+  authors: [{ name: PERSON.name, url: SITE_URL }],
+  creator: PERSON.name,
+  publisher: PERSON.name,
+  category: 'technology',
   verification: {
     google: 'CgFoQW3tmj4q4x5nMDfx4ahOkukqImyC5yV_UF-1-O8',
   },
@@ -48,29 +35,22 @@ export const metadata: Metadata = {
     canonical: './',
   },
   openGraph: {
-    title: 'Niraj Rai | React Native & Mobile Application Developer',
-    description:
-      'Explore the portfolio of Niraj Rai - React Native Developer specializing in iOS, Android, and web mobile applications.',
-    url: siteUrl,
-    siteName: 'Niraj Rai - React Native & Mobile App Developer Portfolio',
-    locale: 'en_US',
-    type: 'website',
-    images: [
-      {
-        url: '/nirajImage.png',
-        width: 1200,
-        height: 630,
-        alt: 'Niraj Rai - React Native & Mobile Application Developer',
-      },
-    ],
+    title: 'Niraj Rai — React Native Developer | iOS & Android Apps',
+    description,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    locale: 'en_IN',
+    type: 'profile',
+    firstName: 'Niraj',
+    lastName: 'Rai',
+    username: 'nirajraiy',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Niraj Rai | React Native & Mobile Application Developer',
+    title: 'Niraj Rai — React Native Developer',
     description:
-      'React Native & Mobile Application Developer with 3+ years shipping 12+ production apps.',
+      'React Native developer shipping iOS & Android apps — 14 production apps, 20K+ users, 99.7% crash-free.',
     creator: '@nirajraiy',
-    images: ['/nirajImage.png'],
   },
   robots: {
     index: true,
@@ -93,7 +73,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#ffa500',
+  themeColor: '#07080b',
+  colorScheme: 'dark',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -102,56 +83,89 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     '@graph': [
       {
         '@type': 'Person',
-        '@id': `${siteUrl}/#person`,
-        name: 'Niraj Rai',
-        jobTitle: 'React Native & Mobile Application Developer',
-        description:
-          'React Native Developer & Mobile Application Developer with 3+ years experience building flagship Android, iOS, and cross-platform apps serving 20,000+ active users.',
-        url: siteUrl,
-        image: `${siteUrl}/nirajImage.png`,
-        sameAs: [
-          'https://github.com/nirajraiy',
-          'https://www.linkedin.com/in/nirajrai7/',
-        ],
+        '@id': `${SITE_URL}/#person`,
+        name: PERSON.name,
+        alternateName: PERSON.alternateName,
+        givenName: 'Niraj',
+        familyName: 'Rai',
+        jobTitle: PERSON.jobTitle,
+        description,
+        url: SITE_URL,
+        image: `${SITE_URL}/nirajImage.png`,
+        email: `mailto:${PERSON.email}`,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Mohali',
+          addressRegion: 'Punjab',
+          addressCountry: 'IN',
+        },
+        nationality: { '@type': 'Country', name: 'India' },
+        worksFor: { '@type': 'Organization', name: 'Stellen Infotech', address: 'Mohali, Punjab, India' },
+        alumniOf: {
+          '@type': 'CollegeOrUniversity',
+          name: 'Arya College of Engineering & Research Centre',
+          address: 'Jaipur, Rajasthan, India',
+        },
+        hasOccupation: {
+          '@type': 'Occupation',
+          name: 'React Native Developer',
+          occupationLocation: { '@type': 'City', name: 'Mohali' },
+          skills:
+            'React Native, TypeScript, JavaScript, Kotlin, Swift, Redux Toolkit, Firebase, REST APIs, CI/CD, iOS, Android, Next.js',
+        },
+        knowsLanguage: ['English'],
+        sameAs: [PERSON.github, PERSON.linkedin],
         knowsAbout: [
           'React Native',
           'Mobile Application Development',
           'iOS Development',
           'Android Development',
+          'Android TV',
+          'tvOS',
           'TypeScript',
-          'Next.js',
-          'Swift',
           'Kotlin',
+          'Swift',
           'Redux Toolkit',
           'Firebase',
-          'REST APIs',
-          'App Store Publishing',
+          'Offline-first architecture',
+          'Real-time apps with Pusher and WebSockets',
+          'CI/CD with Fastlane and Bitrise',
+          'App Store Connect',
           'Google Play Console',
+          'Next.js',
+          'React.js',
         ],
+        owns: liveProjects.map((p) => ({
+          '@type': 'MobileApplication',
+          name: p.title,
+          url: p.appLink?.ios ?? p.appLink?.android,
+        })),
       },
       {
         '@type': 'WebSite',
-        '@id': `${siteUrl}/#website`,
-        url: siteUrl,
-        name: 'Niraj Rai Portfolio',
-        description:
-          'Portfolio of Niraj Rai - React Native & Mobile Application Developer',
-        publisher: {
-          '@id': `${siteUrl}/#person`,
-        },
+        '@id': `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: SITE_NAME,
+        inLanguage: 'en-IN',
+        description,
+        publisher: { '@id': `${SITE_URL}/#person` },
+      },
+      {
+        '@type': 'ProfilePage',
+        '@id': `${SITE_URL}/#profile`,
+        url: SITE_URL,
+        name: 'Niraj Rai — React Native Developer Portfolio',
+        mainEntity: { '@id': `${SITE_URL}/#person` },
+        isPartOf: { '@id': `${SITE_URL}/#website` },
       },
     ],
   };
 
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
